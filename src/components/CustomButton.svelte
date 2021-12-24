@@ -33,7 +33,10 @@
       column-gap: 1rem;
       width: max-content;
       transition: $transition-duration $easing-function;
-      margin-top: 1rem;
+
+      :global(&.is-mobile) {
+        margin-top: 1rem;
+      }
 
       * {
         transition: $transition-duration $easing-function;

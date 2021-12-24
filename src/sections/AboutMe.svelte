@@ -51,6 +51,8 @@
         max-width: 100%;
 
         .button {
+          margin-top: 1.5rem;
+
           :global(&.is-mobile) {
             font-size: 1.1rem!important;
           }
