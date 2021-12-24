@@ -64,7 +64,7 @@
 
 <div class="preloader">
     <LottiePlayer
-        src="/assets/lottie/logo-in-out.json"
+        src="assets/lottie/logo-in-out.json"
         autoplay="{true}"
         loop="{true}"
         controls="{false}"

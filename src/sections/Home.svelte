@@ -24,7 +24,7 @@
 <section class="home">
     <Header />
     <BackgroundTextRow text="Arthur Fontaine" />
-    <img src="/assets/png/portrait.png" alt="" bind:this={portrait} data-parallax-amplitude="0">
+    <img src="assets/png/portrait.png" alt="" bind:this={portrait} data-parallax-amplitude="0">
 </section>
 
 <style lang="scss">
