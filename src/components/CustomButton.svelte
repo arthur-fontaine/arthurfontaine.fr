@@ -5,8 +5,12 @@
 
     export let onClick = () => {
         const aElement = document.createElement('a');
-        aElement.href = href;
-        aElement.target = '_blank';
+        aElement.setAttribute('href', href);
+        aElement.setAttribute('target', '_blank');
+
+        if (download) {
+            aElement.setAttribute('download', '');
+        }
 
         aElement.click();
     };
