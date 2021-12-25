@@ -30,7 +30,7 @@
     display: flex;
     flex-direction: column;
     padding: $padding-base $padding-base 0;
-    height: 100vh;
+    min-height: 100vh;
     box-sizing: border-box;
 
     .parts-row {

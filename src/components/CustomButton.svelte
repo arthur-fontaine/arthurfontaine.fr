@@ -33,9 +33,10 @@
       //cursor: pointer;
       font-size: 1.5rem;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       column-gap: 1rem;
       width: max-content;
+      max-width: 100%;
       transition: $transition-duration $easing-function;
 
       :global(&.is-mobile) {

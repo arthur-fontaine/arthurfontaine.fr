@@ -51,12 +51,21 @@
         list-style: none;
         padding: 0;
         margin: 0;
+        max-width: 100%;
 
         li {
           margin-bottom: 1rem;
+          max-width: 100%;
+
+          :global(*) {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
 
           :global(*.is-mobile) {
-            margin-bottom: 0rem!important;
+            margin-bottom: 0!important;
           }
         }
 
