@@ -30,7 +30,7 @@
         },
         {
             name: "Rosas",
-            description: "A free RSS reader that allows you to read your favorite news sources and play with your favorite podcasts.",
+            description: "A free RSS reader that allows you to read your favorite news sources and play your favorite podcasts.",
             isInDevelopment: true,
             hoverGradient: "radial-gradient(circle at left top, #F65045, #F53F32)",
         }
