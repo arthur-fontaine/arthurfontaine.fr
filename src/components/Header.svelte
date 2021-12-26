@@ -24,13 +24,16 @@
         </div>
     </nav>
     <div class="socials">
-        <div><a href="https://twitter.com/f_arthr" target="_blank">
+        <div on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"social", social: "twitter" } })}}>
+            <a href="https://twitter.com/f_arthr" target="_blank">
             <AsyncSvg src="assets/svg/icons/twitter.svg" hint="Twitter" fill="#E4E6E7" />
         </a></div>
-        <div><a href="https://www.linkedin.com/in/arthur-fontaine/" target="_blank">
+        <div on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"social", social: "linkedin" } })}}>
+            <a href="https://www.linkedin.com/in/arthur-fontaine/" target="_blank">
             <AsyncSvg src="assets/svg/icons/linkedin.svg" hint="LinkedIn" fill="#E4E6E7" />
         </a></div>
-        <div><a href="https://github.com/arthur-fontaine" target="_blank">
+        <div on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"social", social: "github" } })}}>
+            <a href="https://github.com/arthur-fontaine" target="_blank">
             <AsyncSvg src="assets/svg/icons/github.svg" hint="GitHub" fill="#E4E6E7" />
         </a></div>
     </div>

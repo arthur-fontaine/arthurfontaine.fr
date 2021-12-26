@@ -1,9 +1,21 @@
 <script>
     export let onClick;
     export let href;
+    export let sendEvent = false;
+    export let eventType = "link";
 
     function callback() {
         if (href) {
+            if (sendEvent) {
+                insights.track({
+                        id: "link-clicked",
+                        parameters: {
+                            type: eventType,
+                            url: href
+                        }
+                    });
+            }
+
             const aElement = document.createElement('a');
             aElement.href = href;
             aElement.target = '_blank';

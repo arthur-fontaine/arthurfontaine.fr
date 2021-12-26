@@ -176,7 +176,10 @@
                         {#each project.links as link}
                             {#if link.mainCallToAction}
                                 <li style="--hover-text-color: {link.hoverTextColor}">
-                                    <div class="project__links__mouse-over-container">
+                                    <div
+                                            class="project__links__mouse-over-container"
+                                            on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"project", project: project.name, link_name: link.name, link_url: link.url } })}}
+                                    >
                                         <a href={link.url} target="_blank" rel="noopener noreferrer" class="project__links--main-call-to-action">
                                             {link.name}
                                         </a>
@@ -184,7 +187,11 @@
                                 </li>
                             {:else}
                                 <li>
-                                    <CustomButton href={link.url} style="font-size: 1.1rem; color: var(--custom-button-color, #ffffff)">{link.name}</CustomButton>
+                                    <CustomButton
+                                            href={link.url}
+                                            style="font-size: 1.1rem; color: var(--custom-button-color, #ffffff)"
+                                            sendEvent={() => {insights.track({ id: "link-clicked", parameters: { type:"project", project: project.name, link_name: link.name, link_url: link.url } })}}
+                                    >{link.name}</CustomButton>
                                 </li>
                             {/if}
                         {/each}
