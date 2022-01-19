@@ -25,7 +25,7 @@
     </nav>
     <div class="socials">
         <div on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"social", social: "twitter" } })}}>
-            <a href="https://twitter.com/f_arthr" target="_blank">
+            <a href="https://twitter.com/aarthurfontaine" target="_blank">
             <AsyncSvg src="assets/svg/icons/twitter.svg" hint="Twitter" fill="#E4E6E7" />
         </a></div>
         <div on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"social", social: "linkedin" } })}}>

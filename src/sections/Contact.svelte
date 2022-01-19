@@ -18,8 +18,8 @@
                     sendEvent="link-clicked" eventType="contact">+33 7 71 71 55 09</Link></li>
             <li class="contact__link-separator"></li>
             <li><Link
-                    href="https://twitter.com/f_arthr"
-                    sendEvent="link-clicked" eventType="contact">https://twitter.com/f_arthr</Link></li>
+                    href="https://twitter.com/aarthurfontaine"
+                    sendEvent="link-clicked" eventType="contact">https://twitter.com/aarthurfontaine</Link></li>
             <li><Link
                     href="https://t.me/arthur-fontaine"
                     sendEvent="link-clicked" eventType="contact">https://t.me/arthur-fontaine</Link></li>
