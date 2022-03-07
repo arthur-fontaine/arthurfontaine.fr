@@ -16,9 +16,7 @@
             <CustomText>Student at HETIC, development school, I have been developing websites and mobile applications for 2 years.</CustomText>
             <CustomText>Having chosen to study a Bachelor's degree in Data and Artificial Intelligence, I plan to specialize in a field with great perspectives.</CustomText>
             <CustomText>To date, I use and have learned Python, Typescript (with Nuxt.js / Svelte / Node.js) and Dart (with Flutter).</CustomText>
-            <CustomButton sendEvent={() => {
-                insights.track({ id: "download", parameters: { file_name: "resume.pdf" } })
-            }} href="resume.pdf" download>Download my resume</CustomButton>
+            <CustomButton href="resume.pdf" download>Download my resume</CustomButton>
         </div>
         <Curriculum />
     </div>

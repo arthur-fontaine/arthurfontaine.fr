@@ -2,11 +2,8 @@
     export let download = false;
     export let href = '';
     export let style = '';
-    export let sendEvent = () => {};
 
     export let onClick = () => {
-        sendEvent();
-
         const aElement = document.createElement('a');
         aElement.setAttribute('href', href);
         aElement.setAttribute('target', '_blank');

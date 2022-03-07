@@ -9,6 +9,10 @@
     import Contact from "./sections/Contact.svelte";
     import Cursor from "./components/Cursor.svelte";
 
+    import posthog from 'posthog-js'
+
+    posthog.init('phc_EWKjn4IlXBODRPmtD0fC1Qsb9n88M1ns5lKd6FK5L00', { api_host: 'https://app.posthog.com' });
+
     onDestroy(() => {
         luge.lifecycle.refresh();
     });

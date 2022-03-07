@@ -67,7 +67,8 @@
             if (!element.matches(':hover')) {
                 try {
                     applyPositionAndSize(event);
-                } catch {}
+                } catch {
+                }
                 element.classList.remove('project--hover');
             }
         });
@@ -83,7 +84,8 @@
             !target.classList.contains('project--hover')) {
             try {
                 applyPositionAndSize(event);
-            } catch {}
+            } catch {
+            }
             event.target.classList.add('project--hover');
         }
     }
@@ -95,7 +97,8 @@
             if (!target.matches(':hover')) {
                 try {
                     applyPositionAndSize(event);
-                } catch {}
+                } catch {
+                }
                 event.target.classList.remove('project--hover');
             }
         } else {
@@ -111,12 +114,12 @@
         let calcY = (x - box.x - (box.width / 2)) / constrainX;
 
         return "perspective(100px) "
-            + "   rotateX("+ calcX +"deg) "
-            + "   rotateY("+ calcY +"deg) ";
+            + "   rotateX(" + calcX + "deg) "
+            + "   rotateY(" + calcY + "deg) ";
     }
 
     function followMouseTransformElement(el, xyEl) {
-        el.style.transform  = followMouseTransforms.apply(null, xyEl);
+        el.style.transform = followMouseTransforms.apply(null, xyEl);
     }
 
     onMount(() => {
@@ -130,7 +133,7 @@
 
                 let position = [event.clientX, event.clientY, elementToTransform];
 
-                window.requestAnimationFrame(function() {
+                window.requestAnimationFrame(function () {
                     followMouseTransformElement(elementToTransform, position);
                 });
             });
@@ -142,7 +145,7 @@
                     elementToTransform = elementToTransform.parentElement;
                 }
 
-                window.requestAnimationFrame(function() {
+                window.requestAnimationFrame(function () {
                     elementToTransform.style.transition = '0.5s';
                     elementToTransform.style.transform = 'perspective(100px) rotateX(0deg) rotateY(0deg)';
                     setTimeout(() => {
@@ -161,7 +164,8 @@
 
     <div>
         {#each projects as project, i}
-            <div class="project" style="--hover-gradient: {project.hoverGradient}" on:mouseover={projectMouseover} on:mouseout={projectMouseout}>
+            <div class="project" style="--hover-gradient: {project.hoverGradient}" on:mouseover={projectMouseover}
+                 on:mouseout={projectMouseout}>
                 <div class="project__background"></div>
                 <div>
                     <h3 class="project__name">{project.name}</h3>
@@ -176,11 +180,9 @@
                         {#each project.links as link}
                             {#if link.mainCallToAction}
                                 <li style="--hover-text-color: {link.hoverTextColor}">
-                                    <div
-                                            class="project__links__mouse-over-container"
-                                            on:click={() => {insights.track({ id: "link-clicked", parameters: { type:"project", project: project.name, link_name: link.name, link_url: link.url } })}}
-                                    >
-                                        <a href={link.url} target="_blank" rel="noopener noreferrer" class="project__links--main-call-to-action">
+                                    <div class="project__links__mouse-over-container">
+                                        <a href={link.url} target="_blank" rel="noopener noreferrer"
+                                           class="project__links--main-call-to-action">
                                             {link.name}
                                         </a>
                                     </div>
@@ -190,7 +192,6 @@
                                     <CustomButton
                                             href={link.url}
                                             style="font-size: 1.1rem; color: var(--custom-button-color, #ffffff)"
-                                            sendEvent={() => {insights.track({ id: "link-clicked", parameters: { type:"project", project: project.name, link_name: link.name, link_url: link.url } })}}
                                     >{link.name}</CustomButton>
                                 </li>
                             {/if}
@@ -244,7 +245,7 @@
         margin: 0 0 1rem;
 
         :global(&.is-mobile) {
-          font-size: 2rem!important;
+          font-size: 2rem !important;
         }
       }
 
@@ -290,16 +291,16 @@
 
       &__links {
         :global(&.is-mobile) {
-          flex-direction: column!important;
-          align-items: flex-end!important;
-          margin-top: 1rem!important;
+          flex-direction: column !important;
+          align-items: flex-end !important;
+          margin-top: 1rem !important;
         }
 
         &--main-call-to-action {
           display: block;
 
           :global(&.is-mobile) {
-            color: var(--hover-text-color)!important;
+            color: var(--hover-text-color) !important;
           }
         }
       }
@@ -307,7 +308,7 @@
       &__in-dev {
         p {
           :global(&.is-mobile) {
-            margin: 0!important;
+            margin: 0 !important;
           }
         }
       }
