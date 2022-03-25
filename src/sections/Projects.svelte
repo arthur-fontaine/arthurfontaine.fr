@@ -1,160 +1,178 @@
 <script>
-    import CustomTitle from "../components/CustomTitle.svelte";
-    import CustomButton from "../components/CustomButton.svelte";
-    import {onMount} from "svelte";
+  import CustomTitle from "../components/CustomTitle.svelte";
+  import CustomButton from "../components/CustomButton.svelte";
+  import {onMount} from "svelte";
 
-    const projects = [
+  const projects = [
+    {
+      name: "HiberFile",
+      description: "A free, open source and privacy friendly file host.",
+      isInDevelopment: false,
+      links: [
         {
-            name: "HiberFile",
-            description: "A free, open source and privacy friendly file host.",
-            isInDevelopment: false,
-            links: [
-                {
-                    name: "See the project",
-                    url: "https://hiberfile.com",
-                    mainCallToAction: true,
-                    hoverTextColor: '#2D56D5'
-                },
-                {
-                    name: "View on GitHub",
-                    url: "https://github.com/hiberfile/hiberfile"
-                }
-            ],
-            hoverGradient: "radial-gradient(100% 2722.12% at 0% 0%, #009BF5 0%, #2D56D5 100%)",
+          name: "See the project",
+          url: "https://hiberfile.com",
+          mainCallToAction: true,
+          hoverTextColor: '#2D56D5'
         },
         {
-            name: "Quice",
-            description: "An application that analyzes your dietary needs and your tastes to suggest the best meals among thousands.",
-            isInDevelopment: true,
-            hoverGradient: "radial-gradient(circle at left top, #84CAD6, #6AAAB5)",
+          name: "View on GitHub",
+          url: "https://github.com/hiberfile/hiberfile"
+        }
+      ],
+      hoverGradient: "radial-gradient(100% 2722.12% at 0% 0%, #009BF5 0%, #2D56D5 100%)",
+    },
+    {
+      name: "Colladraw",
+      description: "A collaborative online whiteboard where you can draw with your friends on the same canvas.",
+      isInDevelopment: false,
+      links: [
+        {
+          name: "See the project",
+          url: "https://colladraw.fun",
+          mainCallToAction: true,
+          hoverTextColor: '#8e80ea'
         },
         {
-            name: "Rosas",
-            description: "A free RSS reader that allows you to read your favorite news sources and play your favorite podcasts.",
-            isInDevelopment: true,
-            hoverGradient: "radial-gradient(circle at left top, #F65045, #F53F32)",
+          name: "View on GitHub",
+          url: "https://github.com/baptistedph/colladraw"
         }
-    ]
+      ],
+      hoverGradient: "radial-gradient(100% 2722.12% at 0% 0%, #a497f7 0%, #8e80ea 100%)",
+    },
+    {
+      name: "Quice",
+      description: "An application that analyzes your dietary needs and your tastes to suggest the best meals among thousands.",
+      isInDevelopment: true,
+      hoverGradient: "radial-gradient(circle at left top, #84CAD6, #6AAAB5)",
+    },
+    {
+      name: "Rosas",
+      description: "A free RSS reader that allows you to read your favorite news sources and play your favorite podcasts.",
+      isInDevelopment: true,
+      hoverGradient: "radial-gradient(circle at left top, #F65045, #F53F32)",
+    }
+  ]
 
-    function getProjectInParent(element) {
-        let currentElement = element;
+  function getProjectInParent(element) {
+    let currentElement = element;
 
-        if (currentElement.classList.contains("project")) {
-            return currentElement;
-        }
-
-        while (currentElement.parentElement) {
-            if (currentElement.parentElement.classList.contains("project")) {
-                return currentElement.parentElement;
-            }
-
-            currentElement = currentElement.parentElement;
-        }
+    if (currentElement.classList.contains("project")) {
+      return currentElement;
     }
 
-    function applyPositionAndSize(event) {
-        event.target.querySelector('.project__background').style.left = event.offsetX - event.target.querySelector('.project__background').offsetWidth / 2 + 'px';
+    while (currentElement.parentElement) {
+      if (currentElement.parentElement.classList.contains("project")) {
+        return currentElement.parentElement;
+      }
 
-        if (event.offsetY > event.target.offsetHeight / 2) {
-            event.target.querySelector('.project__background').style.top = event.target.offsetHeight - event.target.querySelector('.project__background').offsetHeight / 2 + 'px';
-        } else {
-            event.target.querySelector('.project__background').style.top = -event.target.querySelector('.project__background').offsetHeight / 2 + 'px';
+      currentElement = currentElement.parentElement;
+    }
+  }
+
+  function applyPositionAndSize(event) {
+    event.target.querySelector('.project__background').style.left = event.offsetX - event.target.querySelector('.project__background').offsetWidth / 2 + 'px';
+
+    if (event.offsetY > event.target.offsetHeight / 2) {
+      event.target.querySelector('.project__background').style.top = event.target.offsetHeight - event.target.querySelector('.project__background').offsetHeight / 2 + 'px';
+    } else {
+      event.target.querySelector('.project__background').style.top = -event.target.querySelector('.project__background').offsetHeight / 2 + 'px';
+    }
+  }
+
+  function checkProjectMouseout() {
+    document.querySelectorAll('.project--hover').forEach(element => {
+      if (!element.matches(':hover')) {
+        try {
+          applyPositionAndSize(event);
+        } catch {
         }
-    }
-
-    function checkProjectMouseout() {
-        document.querySelectorAll('.project--hover').forEach(element => {
-            if (!element.matches(':hover')) {
-                try {
-                    applyPositionAndSize(event);
-                } catch {
-                }
-                element.classList.remove('project--hover');
-            }
-        });
-    }
-
-    onMount(() => {
-        setInterval(checkProjectMouseout, 100);
+        element.classList.remove('project--hover');
+      }
     });
+  }
 
-    function projectMouseover(event) {
-        const target = getProjectInParent(event.target);
-        if (target.matches(':hover') &&
-            !target.classList.contains('project--hover')) {
-            try {
-                applyPositionAndSize(event);
-            } catch {
-            }
-            event.target.classList.add('project--hover');
+  onMount(() => {
+    setInterval(checkProjectMouseout, 100);
+  });
+
+  function projectMouseover(event) {
+    const target = getProjectInParent(event.target);
+    if (target.matches(':hover') &&
+      !target.classList.contains('project--hover')) {
+      try {
+        applyPositionAndSize(event);
+      } catch {
+      }
+      event.target.classList.add('project--hover');
+    }
+  }
+
+  function projectMouseout(event) {
+    const target = getProjectInParent(event.target);
+
+    if (target) {
+      if (!target.matches(':hover')) {
+        try {
+          applyPositionAndSize(event);
+        } catch {
         }
+        event.target.classList.remove('project--hover');
+      }
+    } else {
+      checkProjectMouseout();
     }
+  }
 
-    function projectMouseout(event) {
-        const target = getProjectInParent(event.target);
+  function followMouseTransforms(x, y, el) {
+    let box = el.getBoundingClientRect();
+    let constrainX = 150;
+    let constrainY = 6;
+    let calcX = -(y - box.y - (box.height / 2)) / constrainY;
+    let calcY = (x - box.x - (box.width / 2)) / constrainX;
 
-        if (target) {
-            if (!target.matches(':hover')) {
-                try {
-                    applyPositionAndSize(event);
-                } catch {
-                }
-                event.target.classList.remove('project--hover');
-            }
-        } else {
-            checkProjectMouseout();
+    return "perspective(100px) "
+      + "   rotateX(" + calcX + "deg) "
+      + "   rotateY(" + calcY + "deg) ";
+  }
+
+  function followMouseTransformElement(el, xyEl) {
+    el.style.transform = followMouseTransforms.apply(null, xyEl);
+  }
+
+  onMount(() => {
+    document.querySelectorAll('.project__links__mouse-over-container').forEach(el => {
+      el.addEventListener('mousemove', event => {
+        let elementToTransform = event.target;
+
+        if (!elementToTransform.classList.contains('.project__links--main-call-to-action')) {
+          elementToTransform = elementToTransform.parentElement;
         }
-    }
 
-    function followMouseTransforms(x, y, el) {
-        let box = el.getBoundingClientRect();
-        let constrainX = 150;
-        let constrainY = 6;
-        let calcX = -(y - box.y - (box.height / 2)) / constrainY;
-        let calcY = (x - box.x - (box.width / 2)) / constrainX;
+        let position = [event.clientX, event.clientY, elementToTransform];
 
-        return "perspective(100px) "
-            + "   rotateX(" + calcX + "deg) "
-            + "   rotateY(" + calcY + "deg) ";
-    }
+        window.requestAnimationFrame(function () {
+          followMouseTransformElement(elementToTransform, position);
+        });
+      });
 
-    function followMouseTransformElement(el, xyEl) {
-        el.style.transform = followMouseTransforms.apply(null, xyEl);
-    }
+      el.addEventListener('mouseout', event => {
+        let elementToTransform = event.target;
 
-    onMount(() => {
-        document.querySelectorAll('.project__links__mouse-over-container').forEach(el => {
-            el.addEventListener('mousemove', event => {
-                let elementToTransform = event.target;
+        if (!elementToTransform.classList.contains('.project__links--main-call-to-action')) {
+          elementToTransform = elementToTransform.parentElement;
+        }
 
-                if (!elementToTransform.classList.contains('.project__links--main-call-to-action')) {
-                    elementToTransform = elementToTransform.parentElement;
-                }
-
-                let position = [event.clientX, event.clientY, elementToTransform];
-
-                window.requestAnimationFrame(function () {
-                    followMouseTransformElement(elementToTransform, position);
-                });
-            });
-
-            el.addEventListener('mouseout', event => {
-                let elementToTransform = event.target;
-
-                if (!elementToTransform.classList.contains('.project__links--main-call-to-action')) {
-                    elementToTransform = elementToTransform.parentElement;
-                }
-
-                window.requestAnimationFrame(function () {
-                    elementToTransform.style.transition = '0.5s';
-                    elementToTransform.style.transform = 'perspective(100px) rotateX(0deg) rotateY(0deg)';
-                    setTimeout(() => {
-                        elementToTransform.style.transition = '';
-                    }, 500);
-                });
-            });
-        })
+        window.requestAnimationFrame(function () {
+          elementToTransform.style.transition = '0.5s';
+          elementToTransform.style.transform = 'perspective(100px) rotateX(0deg) rotateY(0deg)';
+          setTimeout(() => {
+            elementToTransform.style.transition = '';
+          }, 500);
+        });
+      });
     })
+  })
 </script>
 
 <section id="projects">
