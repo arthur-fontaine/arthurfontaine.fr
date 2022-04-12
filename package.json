@@ -23,6 +23,7 @@
     "@lottiefiles/svelte-lottie-player": "^0.2.0",
     "@waaark/luge": "^0.6.1-beta",
     "animejs": "^3.2.1",
+    "gsap": "^3.10.2",
     "node-sass": "^7.0.0",
     "posthog-js": "^1.17.9",
     "sirv-cli": "^1.0.0",
