@@ -126,14 +126,6 @@
     height: 100%;
   }
 
-  :global(*) {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-  }
-
   :global(body) {
     display: flex;
     flex-wrap: wrap;
@@ -211,6 +203,10 @@
     }
 
     div.send-me {
+      h3 {
+        margin-bottom: 0.5rem;
+      }
+
       a {
         font-size: 1.3rem;
         font-weight: 300;
