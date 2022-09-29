@@ -1,0 +1,11 @@
+---
+import redirectMappingState from "../data/redirectMapping";
+
+const redirectMapping = await redirectMappingState.get();
+
+if (Astro.url.pathname in redirectMapping) {
+  return Astro.redirect(redirectMapping[Astro.url.pathname]);
+}
+
+return Astro.redirect('/')
+---

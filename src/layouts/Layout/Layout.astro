@@ -1,0 +1,113 @@
+---
+import { SEO } from "astro-seo";
+
+import { themeClass } from "../../styles/themes.css";
+import {
+	htmlClass,
+	bodyClass,
+	asideClass,
+	mainClass,
+	expandedClass,
+	titleClass,
+	socialsClass,
+	sendEmailTitleClass,
+	emailClass,
+	downloadResumeClass,
+} from "./layout.css";
+
+import Cursor from "../../components/Cursor/Cursor.astro";
+
+import loadIcons from "../../utils/loadIcons";
+
+const icons = await loadIcons(
+	(
+		await Astro.glob<{ default: string }>("../../assets/icons/*.svg")
+	).map((icon) => (icon.default.split("/").pop() ?? "").split(".")[0])
+);
+
+const { default: socials } = await import("../../data/socials");
+
+export interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class={[themeClass, htmlClass].join(" ")}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<SEO
+			title={title}
+			description={description}
+			twitter={{
+				card: "summary",
+				site: "@f_arthr",
+				creator: "@f_arthr",
+			}}
+			openGraph={{
+				basic: {
+					title,
+					type: "website",
+					url: "https://arthurfontaine.fr",
+					image: "https://arthurfontaine.fr/og-image.png",
+				},
+			}}
+		/>
+		<meta
+			name="keywords"
+			content="arthur fontaine, arthur, fontaine, developer, data, ai, ia, front-end, front end, back-end, back end, full-stack, full stack, web, freelance, paris, france, javascript, react, vue, svelte, typescript, python"
+		/>
+		<meta name="author" content="Arthur Fontaine" />
+	</head>
+	<body class={bodyClass}>
+		<Cursor />
+		<aside class={asideClass}>
+			<h1 class={titleClass}>Arthur<br />Fontaine</h1>
+			<div class={socialsClass}>
+				{
+					socials.map((social) => (
+						<a
+							href={social.link}
+							aria-label={social.name}
+							set:html={icons[social.name.toLowerCase()]}
+						/>
+					))
+				}
+			</div>
+			<div>
+				<p class={sendEmailTitleClass}>Send me a message!</p>
+				<a class={emailClass} href="mailto:me@arthurfontaine.fr">
+					me@arthurfontaine.fr
+				</a>
+			</div>
+			<div class={expandedClass}></div>
+			<footer>
+				<a class={downloadResumeClass} href="/resume">
+					Download my resume
+				</a>
+			</footer>
+		</aside>
+		<main class={mainClass}>
+			<slot />
+		</main>
+		{
+			!import.meta.env.DEV && import.meta.env.CLOUDFLARE_ANALYTICS_TOKEN && (
+				// Cloudflare Web Analytics
+				<script
+					defer
+					src="https://static.cloudflareinsights.com/beacon.min.js"
+					data-cf-beacon={`{"token": "${
+						import.meta.env.CLOUDFLARE_ANALYTICS_TOKEN
+					}"}`}
+				/>
+				// End Cloudflare Web Analytics
+			)
+		}
+	</body>
+</html>

@@ -1,0 +1,76 @@
+---
+import { assignInlineVars } from "@vanilla-extract/dynamic";
+
+import type { Project } from "../../data/projects";
+import loadIcons from "../../utils/loadIcons";
+
+import {
+    projectColorVar,
+    workClass,
+    workDescriptionClass,
+    workLinkClass,
+    workLinksClass,
+    workStackClass,
+    workStoryClass,
+    workTitleClass,
+} from "./work.css";
+
+const icons = await loadIcons(
+	(await Astro.glob<{ default: string }>("../../assets/icons/*.svg")).map(
+		(icon) => (icon.default.split("/").pop() ?? '').split(".")[0]
+	)
+);
+
+export interface Props {
+    project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<div
+    class={workClass}
+    style={assignInlineVars({ [projectColorVar]: project.color })}
+>
+    <div>
+        <h3 class={workTitleClass}>{project.title}</h3>
+        <p class={workDescriptionClass}>{project.description}</p>
+        <div class={workLinksClass}>
+            {
+                [
+                    { link: project.githubLink, icon: "github", label: "GitHub" },
+                    { link: project.demoLink, icon: "external-link", label: "Demo" },
+                ].map(({link, icon, label}) => {
+                    if (link) {
+                        return (
+                            <a
+                                class={workLinkClass}
+                                href={link}
+                                target="_blank"
+                                aria-label={label}
+                                set:html={icons[icon]}
+                            />
+                        );
+                    }
+                })
+            }
+        </div>
+    </div>
+
+    <div>
+        <p class={workStoryClass}>
+            {
+                project.story.split("\n").map((line, i, arr) => (
+                    <>
+                        {line.length > 0 && <span>{line}</span>}
+                        {i !== arr.length - 1 && <br />}
+                    </>
+                ))
+            }
+        </p>
+
+        <ul class={workStackClass}>
+            {project.techStack.map((tech) => <li>{tech}</li>)}
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+---
+import { sectionClass } from "../styles/pages/index.css";
+
+import Layout from "../layouts/Layout/Layout.astro";
+
+import Work from "../components/Work/Work.astro";
+
+import projectsState from "../data/projects";
+
+const projects = await projectsState.get();
+
+const birthdate = new Date("2003-10-02");
+const age =
+	new Date(new Date().getTime() - birthdate.getTime()).getFullYear() - 1970;
+---
+
+<Layout
+	title="Arthur Fontaine"
+	description={`I am Arthur, a ${age} years old french full-stack developer. Student at HETIC, development school, I have been developing websites and mobile applications for 2 years.`}
+>
+	<section class={sectionClass}>
+		<h2>About me</h2>
+
+		<p>
+			I am Arthur, a french {age} years old autodidact full-stack developer
+			currently living in Paris. I am currently studying data and AI at HETIC.
+		</p>
+
+		<p>
+			Passionate about new technologies and imagining all sorts of things
+			since I was young, my first computer and development when I was 12
+			years old changed a lot in my life. My creative mind was able to
+			channel itself into putting some of my projects into action.
+		</p>
+	</section>
+
+	<section class={sectionClass}>
+		<h2>My works</h2>
+
+		{
+			projects.map((project) => (
+				<article>
+					<Work project={project} />
+				</article>
+			))
+		}
+	</section>
+</Layout>
