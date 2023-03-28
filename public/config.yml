@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: arthur-fontaine/arthurfontaine.fr
-  branch: use-netlify-cms
+  branch: main
 media_folder: "public/media"
 public_folder: "/media"
 collections:
