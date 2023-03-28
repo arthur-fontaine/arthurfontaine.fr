@@ -1,0 +1,24 @@
+{
+  "social": [
+    {
+      "name": "GitHub",
+      "link": "https://github.com/arthur-fontaine",
+      "icon": "/media/github.svg"
+    },
+    {
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/in/arthur-fontaine/",
+      "icon": "/media/linkedin.svg"
+    },
+    {
+      "name": "Twitter",
+      "link": "https://twitter.com/f_arthr",
+      "icon": "/media/twitter.svg"
+    },
+    {
+      "name": "Discord",
+      "link": "https://discord.com/users/570841288308686848",
+      "icon": "/media/discord.svg"
+    }
+  ]
+}
