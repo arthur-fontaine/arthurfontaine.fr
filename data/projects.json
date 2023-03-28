@@ -1,0 +1,44 @@
+{
+  "projects": [
+    {
+      "name": "Adeupa",
+      "baseline": "A POC of a PWA that aims to bring people closer to small businesses.",
+      "description": "Adeupa is part of a school project in partnership with the French junior chamber of commerce (JCI) where we had to imagine and develop a PWA in 3 weeks.  The idea is to create a PWA to help small businesses to be more visible against the big e-commerce websites and big supermarkets.  The way to solve this problem was free, we chose to gamify the shopping experience to make it funnier and to encourage people to shop locally.",
+      "github": "https://github.com/arthur-fontaine/adeupa",
+      "website": "https://adeupa.co/",
+      "color": "#fe5d5d",
+      "tags": [
+        "Typescript",
+        "React",
+        "Fastify",
+        "Prisma"
+      ]
+    },
+    {
+      "name": "Vitaliplay",
+      "baseline": "A digital health and physical activity platform dedicated to people over 55.",
+      "description": "Vitaliplay is a startup that commissioned the junior web agency of my school (Synerg'hetic) to create their platform.  The platform lets its users to practice physical exercises via videos and live sessions. The exercises are adapted to the user's physical condition and the user can follow his progress over time.  I was in charge of the backend development. I had to create a REST API and a dashboard to manage the platform.",
+      "website": "https://vitaliplay.fr/",
+      "tags": [
+        "Typescript",
+        "Strapi",
+        "React",
+        "Stripe"
+      ],
+      "color": "#0861d1"
+    },
+    {
+      "name": "Stormtwoopers",
+      "description": "Stormtwoopers is one of my small side project.  The idea was to create an app that allows you to easily sort your Twitter subscriptions by swiping right or left like on Tinder.  The user can choose to continue following or unfollow particular Twitter accounts quickly.",
+      "baseline": "A mobile app that allows you to easily sort your Twitter subscriptions by swiping right or left.",
+      "github": "https://github.com/arthur-fontaine/stormtwoopers/",
+      "color": "#1da1f2",
+      "tags": [
+        "Typescript",
+        "React Native",
+        "Expo",
+        "Twitter API"
+      ]
+    }
+  ]
+}
