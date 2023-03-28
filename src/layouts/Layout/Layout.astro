@@ -15,8 +15,6 @@ import {
 	downloadResumeClass,
 } from "./layout.css";
 
-import Cursor from "../../components/Cursor/Cursor.astro";
-
 import loadIcons from "../../utils/loadIcons";
 import social from "../../../data/social.json";
 import contact from "../../../data/contact.json";
@@ -64,9 +62,13 @@ const { title, description } = Astro.props;
 			content="arthur fontaine, arthur, fontaine, developer, data, ai, ia, front-end, front end, back-end, back end, full-stack, full stack, web, freelance, paris, france, javascript, react, vue, svelte, typescript, python"
 		/>
 		<meta name="author" content="Arthur Fontaine" />
+		<style>
+			html {
+				cursor: url('/cursor.svg'), auto;
+			}
+		</style>
 	</head>
 	<body class={bodyClass}>
-		<Cursor />
 		<aside class={asideClass}>
 			<h1 class={titleClass}>Arthur<br />Fontaine</h1>
 			<div class={socialsClass}>
