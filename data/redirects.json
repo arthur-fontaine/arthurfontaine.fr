@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "from": "/flu-shot-learning",
+      "to": "https://github.com/arthur-fontaine/flu-shot-learning"
+    },
+    {
+      "from": "/dupondt",
+      "to": "https://github.com/arthur-fontaine/dupondt"
+    },
+    {
+      "from": "/cv",
+      "to": "/resume"
+    },
+    {
+      "from": "/rosas",
+      "to": "https://github.com/arthur-fontaine/rosas"
+    }
+  ]
+}

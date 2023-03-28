@@ -1,7 +1,7 @@
 ---
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-import type { Project } from "../../data/projects";
+import type projects from "../../../data/projects.json";
 import loadIcons from "../../utils/loadIcons";
 
 import {
@@ -21,6 +21,7 @@ const icons = await loadIcons(
 	)
 );
 
+type Project = typeof projects.projects[number];
 export interface Props {
     project: Project;
 }
@@ -33,13 +34,13 @@ const { project } = Astro.props;
     style={assignInlineVars({ [projectColorVar]: project.color })}
 >
     <div>
-        <h3 class={workTitleClass}>{project.title}</h3>
-        <p class={workDescriptionClass}>{project.description}</p>
+        <h3 class={workTitleClass}>{project.name}</h3>
+        <p class={workDescriptionClass}>{project.baseline}</p>
         <div class={workLinksClass}>
             {
                 [
-                    { link: project.githubLink, icon: "github", label: "GitHub" },
-                    { link: project.demoLink, icon: "external-link", label: "Demo" },
+                    { link: project.github, icon: "github", label: "GitHub" },
+                    { link: project.website, icon: "external-link", label: "Demo" },
                 ].map(({link, icon, label}) => {
                     if (link) {
                         return (
@@ -60,17 +61,17 @@ const { project } = Astro.props;
     <div>
         <p class={workStoryClass}>
             {
-                project.story.split("\n").map((line, i, arr) => (
+                project.description.split("  ").map((line, i, arr) => (
                     <>
                         {line.length > 0 && <span>{line}</span>}
-                        {i !== arr.length - 1 && <br />}
+                        {i !== arr.length - 1 && <><br /><br /></>}
                     </>
                 ))
             }
         </p>
 
         <ul class={workStackClass}>
-            {project.techStack.map((tech) => <li>{tech}</li>)}
+            {project.tags.map((tag) => <li>{tag}</li>)}
         </ul>
     </div>
 </div>
