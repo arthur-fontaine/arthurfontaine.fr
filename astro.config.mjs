@@ -8,5 +8,7 @@ export default defineConfig({
     plugins: [vanillaExtractPlugin({})]
   },
   output: "server",
-  adapter: vercel()
+  adapter: vercel({
+    analytics: true,
+  })
 });

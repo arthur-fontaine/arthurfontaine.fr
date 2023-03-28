@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@astrojs/cloudflare': ^2.0.0
   '@astrojs/vercel': ^2.0.1
   '@types/node': ^18.7.23
   '@types/node-fetch': ^2.6.2
@@ -16,7 +15,6 @@ specifiers:
   vite: ^2.2.3
 
 dependencies:
-  '@astrojs/cloudflare': 2.0.0
   '@astrojs/vercel': 2.0.1
   '@types/node': 18.7.23
   '@types/node-fetch': 2.6.2
@@ -38,12 +36,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.15
-    dev: false
-
-  /@astrojs/cloudflare/2.0.0:
-    resolution: {integrity: sha512-ksajRii7IDPv3clgbiPeb+ntGuFrYBkka8o3dlwUBmYgLBVUEeQfHsI+/NC2fDcmHsn/IuhBrD/Cvd0S+ILCiA==}
-    dependencies:
-      esbuild: 0.14.54
     dev: false
 
   /@astrojs/compiler/0.23.5:
