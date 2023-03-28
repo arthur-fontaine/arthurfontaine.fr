@@ -18,14 +18,14 @@ import {
 import Cursor from "../../components/Cursor/Cursor.astro";
 
 import loadIcons from "../../utils/loadIcons";
+import social from "../../../data/social.json";
+import contact from "../../../data/contact.json";
 
 const icons = await loadIcons(
 	(
-		await Astro.glob<{ default: string }>("../../assets/icons/*.svg")
-	).map((icon) => (icon.default.split("/").pop() ?? "").split(".")[0])
+		social.social.map((social) => social.icon) as string[]
+	).map((icon) => (icon.split("/").pop() ?? "").split(".")[0])
 );
-
-const { default: socials } = await import("../../data/socials");
 
 export interface Props {
 	title: string;
@@ -71,7 +71,7 @@ const { title, description } = Astro.props;
 			<h1 class={titleClass}>Arthur<br />Fontaine</h1>
 			<div class={socialsClass}>
 				{
-					socials.map((social) => (
+					social.social.map((social) => (
 						<a
 							href={social.link}
 							aria-label={social.name}
@@ -82,8 +82,8 @@ const { title, description } = Astro.props;
 			</div>
 			<div>
 				<p class={sendEmailTitleClass}>Send me a message!</p>
-				<a class={emailClass} href="mailto:me@arthurfontaine.fr">
-					me@arthurfontaine.fr
+				<a class={emailClass} href={`mailto:${contact.email}`}>
+					{contact.email}
 				</a>
 			</div>
 			<div class={expandedClass}></div>

@@ -1,12 +1,5 @@
 ---
-import resumeState from "../data/resume";
+import resume from "../../data/resume.json";
 
-const resume = await resumeState.get();
-
-return new Response(resume, {
-  headers: {
-    "Content-Type": "application/octet-stream",
-    "Content-Disposition": "attachment; filename=Arthur Fontaine - CV.pdf",
-  },
-});
+return Astro.redirect(resume.resume);
 ---
