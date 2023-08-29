@@ -1,6 +1,20 @@
 {
   "projects": [
     {
+      "name": "Agrume",
+      "baseline": "API development made for front-end developers.",
+      "description": "Front-end developers are often afraid of the backend. They don't know how to start, what to do, and how to do it. Agrume is a tool that makes developing API endpoints as easy as writing a function. Best of all, it's type-safe!  I built this tool to help my teams at school to develop our prototypes faster by making it easier to use a feature-based structure.",
+      "github": "https://github.com/arthur-fontaine/agrume/",
+      "website": "https://agrume.js.org/",
+      "color": "#1DBC4A",
+      "tags": [
+        "Typescript",
+        "Node.js",
+        "Babel",
+        "Vite"
+      ]
+    },
+    {
       "name": "Adeupa",
       "baseline": "A POC of a PWA that aims to bring people closer to small businesses.",
       "description": "Adeupa is part of a school project in partnership with the French junior chamber of commerce (JCI) where we had to imagine and develop a PWA in 3 weeks.  The idea is to create a PWA to help small businesses to be more visible against the big e-commerce websites and big supermarkets.  The way to solve this problem was free, we chose to gamify the shopping experience to make it funnier and to encourage people to shop locally.",
