@@ -4,7 +4,7 @@ import { vars } from "../../styles/themes.css"
 export const projectColorVar = createVar()
 
 export const workClass = style({
-  display: "flex",
+    display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
@@ -65,7 +65,8 @@ export const workLinksClass = style({
     alignItems: "flex-end",
     gap: vars.space.s,
 
-    height: "-webkit-fill-available",
+    marginTop: 'auto',
+    height: 'fit-content',
 })
 
 export const workLinkClass = style({
