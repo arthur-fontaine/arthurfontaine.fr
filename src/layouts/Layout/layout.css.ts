@@ -43,8 +43,10 @@ export const htmlClass = style({
     color: vars.color.white,
 });
 
-export const bodyClass = style({
+export const bodyContainerClass = style({
     display: "flex",
+    maxWidth: "96rem",
+    margin: "0 auto",
 
     '@media': {
         'screen and (max-width: 768px)': {

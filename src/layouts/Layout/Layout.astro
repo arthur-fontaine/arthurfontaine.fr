@@ -4,7 +4,7 @@ import { SEO } from "astro-seo";
 import { themeClass } from "../../styles/themes.css";
 import {
 	htmlClass,
-	bodyClass,
+	bodyContainerClass,
 	asideClass,
 	mainClass,
 	expandedClass,
@@ -68,35 +68,37 @@ const { title, description } = Astro.props;
 			}
 		</style>
 	</head>
-	<body class={bodyClass}>
-		<aside class={asideClass}>
-			<h1 class={titleClass}>Arthur<br />Fontaine</h1>
-			<div class={socialsClass}>
-				{
-					social.social.map((social) => (
-						<a
-							href={social.link}
-							aria-label={social.name}
-							set:html={icons[social.name.toLowerCase()]}
-						/>
-					))
-				}
-			</div>
-			<div>
-				<p class={sendEmailTitleClass}>Send me a message!</p>
-				<a class={emailClass} href={`mailto:${contact.email}`}>
-					{contact.email}
-				</a>
-			</div>
-			<div class={expandedClass}></div>
-			<footer>
-				<a class={downloadResumeClass} href="/resume">
-					Download my resume
-				</a>
-			</footer>
-		</aside>
-		<main class={mainClass}>
-			<slot />
-		</main>
+	<body>
+		<div class={bodyContainerClass}>
+			<aside class={asideClass}>
+				<h1 class={titleClass}>Arthur<br />Fontaine</h1>
+				<div class={socialsClass}>
+					{
+						social.social.map((social) => (
+							<a
+								href={social.link}
+								aria-label={social.name}
+								set:html={icons[social.name.toLowerCase()]}
+							/>
+						))
+					}
+				</div>
+				<div>
+					<p class={sendEmailTitleClass}>Send me a message!</p>
+					<a class={emailClass} href={`mailto:${contact.email}`}>
+						{contact.email}
+					</a>
+				</div>
+				<div class={expandedClass}></div>
+				<footer>
+					<a class={downloadResumeClass} href="/resume">
+						Download my resume
+					</a>
+				</footer>
+			</aside>
+			<main class={mainClass}>
+				<slot />
+			</main>
+		</div>
 	</body>
 </html>
