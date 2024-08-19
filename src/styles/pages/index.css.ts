@@ -20,6 +20,10 @@ export const sectionClass = style({
     },
 })
 
+export const comingSoonClass = style({
+    fontStyle: "italic",
+})
+
 export const seeMoreWorkClass = style({
     textAlign: "center",
     padding: vars.space.m,
