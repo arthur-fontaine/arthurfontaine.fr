@@ -41,7 +41,14 @@ globalStyle('::-webkit-scrollbar-thumb', {
 
 export const htmlClass = style({
     backgroundColor: vars.color.background,
+    // background-image: linear-gradient(to right, var(--color-primary__145x6rl0), var(--color-primary__145x6rl0) 50%, var(--color-background__145x6rl1) 51%);
     color: vars.color.text,
+
+    '@media': {
+        'screen and (prefers-color-scheme: light)': {
+            backgroundImage: `linear-gradient(to right, ${vars.color.primary}, ${vars.color.primary} 50%, ${vars.color.background} 51%)`,
+        },
+    },
 });
 
 export const bodyContainerClass = style({
@@ -155,6 +162,9 @@ export const mainClass = style({
         'screen and (max-width: 768px)': {
             height: "fit-content",
             overflowY: "auto",
+        },
+        'screen and (prefers-color-scheme: light)': {
+            backgroundColor: vars.color.background,
         },
     },
 });

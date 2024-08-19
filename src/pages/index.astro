@@ -1,5 +1,5 @@
 ---
-import { sectionClass } from "../styles/pages/index.css";
+import { sectionClass, seeMoreWorkClass } from "../styles/pages/index.css";
 
 import Layout from "../layouts/Layout/Layout.astro";
 
@@ -24,7 +24,7 @@ import about from "../../data/about.json";
 	</section>
 
 	<section class={sectionClass}>
-		<h2>My works</h2>
+		<h2>My featured work</h2>
 
 		{
 			projects.projects.map((project) => (
@@ -33,5 +33,9 @@ import about from "../../data/about.json";
 				</article>
 			))
 		}
+
+		<a href="https://github.com/arthur-fontaine/?tab=repositories" class={seeMoreWorkClass} target="_blank" rel="noopener noreferrer">
+			See more projects on GitHub
+		</a>
 	</section>
 </Layout>

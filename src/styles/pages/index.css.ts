@@ -19,3 +19,17 @@ export const sectionClass = style({
         },
     },
 })
+
+export const seeMoreWorkClass = style({
+    textAlign: "center",
+    padding: vars.space.m,
+    
+    color: vars.color.text,
+
+    '@media': {
+        'screen and (prefers-color-scheme: light)': {
+            backgroundColor: vars.color.cardBackground,
+            color: vars.color.cardText,
+        },
+    },
+})
