@@ -12,7 +12,7 @@ export const workClass = style({
 
     padding: vars.space.xs,
 
-    backgroundColor: vars.color.white,
+    backgroundColor: vars.color.cardBackground,
 })
 
 globalStyle(`${workClass} > *`, {
@@ -35,12 +35,12 @@ globalStyle(`${workClass} > *`, {
 
 globalStyle(`${workClass} > *:first-child`, {
     backgroundColor: projectColorVar,
-    color: vars.color.white,
+    color: '#fff',
 })
 
 globalStyle(`${workClass} > *:last-child`, {
-    backgroundColor: vars.color.white,
-    color: vars.color.black,
+    backgroundColor: vars.color.cardBackground,
+    color: vars.color.cardText,
 
     border: `1px solid ${projectColorVar}`,
 
@@ -70,7 +70,7 @@ export const workLinksClass = style({
 })
 
 export const workLinkClass = style({
-    fill: vars.color.white,
+    fill: '#fff',
 })
 
 export const workStoryClass = style({})

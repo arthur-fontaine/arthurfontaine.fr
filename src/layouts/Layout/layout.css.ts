@@ -1,4 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
+import { calc } from "@vanilla-extract/css-utils";
 import { vars } from "../../styles/themes.css";
 
 globalStyle("html, body", {
@@ -34,13 +35,13 @@ globalStyle('::-webkit-scrollbar-track', {
 });
 
 globalStyle('::-webkit-scrollbar-thumb', {
-    background: vars.color.white,
+    background: vars.color.text,
     borderRadius: 0,
 });
 
 export const htmlClass = style({
-    backgroundColor: vars.color.black,
-    color: vars.color.white,
+    backgroundColor: vars.color.background,
+    color: vars.color.text,
 });
 
 export const bodyContainerClass = style({
@@ -61,11 +62,14 @@ export const asideClass = style({
     flexDirection: "column",
 
     width: "fit-content",
-    minHeight: "100%",
+    minHeight: "100dvh",
     height: "fit-content",
 
     padding: vars.space.xl,
     gap: vars.space.xl,
+
+    backgroundColor: vars.color.primary,
+    color: vars.color.text,
 
     boxSizing: "border-box",
 
@@ -75,6 +79,18 @@ export const asideClass = style({
         'screen and (max-width: 425px)': {
             padding: vars.space.l,
             gap: vars.space.l,
+        },
+        'screen and (prefers-color-scheme: dark)': {
+            margin: vars.space.l,
+            height: calc.subtract("100vh", calc.multiply(vars.space.l, 2)),
+            minHeight: "fit-content",
+        },
+        'screen and (max-width: 768px)': {
+            width: "100%",
+            margin: 0,
+            height: "fit-content",
+            minHeight: "100%",
+            backgroundColor: vars.color.background,
         },
     },
 });
@@ -90,7 +106,7 @@ globalStyle(`${socialsClass} svg`, {
     width: "2rem",
     height: "2rem",
 
-    fill: vars.color.white,
+    fill: vars.color.text,
 });
 
 export const expandedClass = style({
@@ -109,7 +125,7 @@ export const sendEmailTitleClass = style({
 
 export const emailClass = style({
     textDecoration: "underline",
-    color: vars.color.white,
+    color: vars.color.text,
 
     fontSize: vars.font.size.m,
     fontWeight: vars.font.weight.regular,
@@ -126,10 +142,10 @@ export const downloadResumeClass = style({
 export const mainClass = style({
     flex: 1,
 
-    padding: vars.space.xl,
+    padding: vars.space.l,
     boxSizing: "border-box",
 
-    height: "100%",
+    height: "100dvh",
     overflowY: "auto",
 
     '@media': {

@@ -1,7 +1,7 @@
 ---
 import { SEO } from "astro-seo";
 
-import { themeClass } from "../../styles/themes.css";
+import { darkTheme, lightTheme } from "../../styles/themes.css";
 import {
 	htmlClass,
 	bodyContainerClass,
@@ -34,7 +34,7 @@ const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class={[themeClass, htmlClass].join(" ")}>
+<html lang="en" class={[htmlClass, darkTheme, lightTheme].join(" ")}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -68,7 +68,7 @@ const { title, description } = Astro.props;
 			}
 		</style>
 	</head>
-	<body>
+	<body style="display: none;" onload="document.body.style.display = 'block';">
 		<div class={bodyContainerClass}>
 			<aside class={asideClass}>
 				<h1 class={titleClass}>Arthur<br />Fontaine</h1>
@@ -102,3 +102,23 @@ const { title, description } = Astro.props;
 		</div>
 	</body>
 </html>
+
+<script>
+	import { darkTheme, lightTheme } from "../../styles/themes.css";
+
+	const updateTheme = () => {
+		const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+		if (prefersDarkScheme.matches) {
+			document.documentElement.classList.add(darkTheme);
+			document.documentElement.classList.remove(lightTheme);
+		} else {
+			document.documentElement.classList.add(lightTheme);
+			document.documentElement.classList.remove(darkTheme);
+		}
+	};
+
+	updateTheme();
+
+	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateTheme);
+</script>
