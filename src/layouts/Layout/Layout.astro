@@ -18,6 +18,7 @@ import {
 import loadIcons from "../../utils/loadIcons";
 import social from "../../../data/social.json";
 import contact from "../../../data/contact.json";
+import MotoEaster from "../../components/MotoEaster/MotoEaster.astro";
 
 const icons = await loadIcons(
 	(
@@ -74,6 +75,7 @@ const { title, description } = Astro.props;
 		</style>
 	</head>
 	<body style="display: none;" onload="document.body.style.display = 'block';">
+		<MotoEaster />
 		<div class={bodyContainerClass}>
 			<aside class={asideClass}>
 				<h1 class={titleClass}>Arthur<br />Fontaine</h1>

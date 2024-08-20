@@ -1,0 +1,12 @@
+---
+import { motoEasterClass } from "./moto-easter.css";
+---
+
+<div class={[motoEasterClass, "moto-easter"].join(" ")} />
+
+<script>
+  if (typeof location !== "undefined" && (location.host === "voithure.com" || location.host.includes("localhost"))) {
+    const { listenToTriggerMotoEaster } = await import("./moto-easter-trigger");
+    listenToTriggerMotoEaster();
+  }
+</script>
