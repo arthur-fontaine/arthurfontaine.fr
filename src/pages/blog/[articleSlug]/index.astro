@@ -38,7 +38,7 @@ const icons = await loadIcons(["arrow-left"]);
 
 <Layout title={title} description={description} noAside ogImage={`https://arthurfontaine.fr/${Astro.url.pathname}og.png`} ogLargeImage>
   <header class={headerClass}>
-    <a href="/blog" aria-label="Return to home" class={returnToHomeClass}>
+    <a href="/" aria-label="Return to home" class={returnToHomeClass}>
       <svg set:html={icons["arrow-left"]} class={returnToHomeIconClass} />
       <p>Return to home</p>
     </a>
