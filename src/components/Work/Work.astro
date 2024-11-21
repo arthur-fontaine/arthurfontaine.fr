@@ -17,7 +17,7 @@ import {
 
 const icons = await loadIcons(
 	(await Astro.glob<{ default: string }>("../../assets/icons/*.svg")).map(
-		(icon) => (icon.default.split("/").pop() ?? '').split(".")[0]
+		(icon) => (icon.default.src.split("/").pop() ?? '').split(".")[0]
 	)
 );
 

@@ -1,5 +1,14 @@
 ---
-import { comingSoonClass, sectionClass, seeMoreWorkClass } from "../styles/pages/index.css";
+import {
+	blogListClass,
+	blogListItemClass,
+	blogListItemLinkClass,
+	blogListItemTitleClass,
+	blogListItemDateClass,
+	blogListItemTagsClass,
+	sectionClass,
+	seeMoreWorkClass,
+} from "../styles/pages/index.css";
 
 import Layout from "../layouts/Layout/Layout.astro";
 
@@ -7,42 +16,57 @@ import Work from "../components/Work/Work.astro";
 
 import projects from "../../data/projects.json";
 import about from "../../data/about.json";
+import { getCollection } from "astro:content";
+
+const blogPosts = (await getCollection("blog"))
+	.filter((page) => page.data.language === "en")
+	.map((page) => {
+		return {
+			title: page.data.title,
+			slug: page.slug,
+			date: page.data.date.toLocaleDateString("en"),
+			description: page.data.description,
+			tags: page.data.tags,
+		};
+	});
 ---
 
-<Layout
-	title="Arthur Fontaine"
-	description={about.content}
->
+<Layout title="Arthur Fontaine" description={about.content}>
 	<section class={sectionClass}>
 		<h2>About me</h2>
 
 		{
-			about.content.split("\n").map((paragraph) => (
-				paragraph.length > 0 && <p>{paragraph}</p>
-			))
+			about.content
+				.split("\n")
+				.map((paragraph) => paragraph.length > 0 && <p>{paragraph}</p>)
 		}
 	</section>
 
 	<section class={sectionClass}>
 		<h2>Blog</h2>
 
-		<p class={comingSoonClass}>
-			Coming soon<span class="blog__dots">...</span>
-		</p>
-
-		<script>
-			// Animate three dots
-			const dots = document.querySelector(".blog__dots");
-			if (!dots) {
-				throw new Error("No dots found");
+		<ul class={blogListClass}>
+			{
+				blogPosts.map((post) => (
+					<li>
+						<a href={`/blog/${post.slug}`} class={blogListItemLinkClass}>
+							<article class={blogListItemClass}>
+								<h1 class={blogListItemTitleClass}>{post.title}</h1>
+								<div>
+									<span class={blogListItemDateClass}>{post.date}</span>
+									<span>{post.description}</span>
+								</div>
+								<div class={blogListItemTagsClass}>
+									{post.tags.map((tag) => (
+										<span>{tag}</span>
+									))}
+								</div>
+							</article>
+						</a>
+					</li>
+				))
 			}
-			let dotsCount = 0;
-
-			setInterval(() => {
-				dotsCount = (dotsCount + 1) % 4;
-				dots.textContent = ".".repeat(dotsCount);
-			}, 500);
-		</script>
+		</ul>
 	</section>
 
 	<section class={sectionClass}>
@@ -56,7 +80,12 @@ import about from "../../data/about.json";
 			))
 		}
 
-		<a href="https://github.com/arthur-fontaine/?tab=repositories" class={seeMoreWorkClass} target="_blank" rel="noopener noreferrer">
+		<a
+			href="https://github.com/arthur-fontaine/?tab=repositories"
+			class={seeMoreWorkClass}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
 			See more projects on GitHub
 		</a>
 	</section>

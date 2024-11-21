@@ -37,3 +37,39 @@ export const seeMoreWorkClass = style({
         },
     },
 })
+
+export const blogListClass = style({
+    display: "flex",
+    flexDirection: "column",
+    listStyle: "none",
+    gap: vars.space.m,
+    padding: 0,
+})
+
+export const blogListItemClass = style({
+    display: "flex",
+    flexDirection: "column",
+    gap: vars.space.s,
+})
+
+export const blogListItemLinkClass = style({
+    color: vars.color.text,
+    textDecoration: "none",
+})
+
+export const blogListItemTitleClass = style({
+    textDecoration: "underline",
+    fontSize: "1em",
+})
+
+export const blogListItemDateClass = style({
+    fontWeight: vars.font.weight.extraLight,
+    fontStyle: "italic",
+})
+
+export const blogListItemTagsClass = style({
+    display: "flex",
+    gap: vars.space.s,
+    fontSize: vars.font.size.xs,
+    fontWeight: vars.font.weight.extraLight,
+})

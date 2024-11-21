@@ -29,6 +29,7 @@ const icons = await loadIcons(
 export interface Props {
 	title: string;
 	description: string;
+	noAside?: boolean;
 }
 
 const { title, description } = Astro.props;
@@ -77,32 +78,34 @@ const { title, description } = Astro.props;
 	<body style="display: none;" onload="document.body.style.display = 'block';">
 		<MotoEaster />
 		<div class={bodyContainerClass}>
-			<aside class={asideClass}>
-				<h1 class={titleClass}>Arthur<br />Fontaine</h1>
-				<div class={socialsClass}>
-					{
-						social.social.map((social) => (
-							<a
-								href={social.link}
-								aria-label={social.name}
-								set:html={icons[social.name.toLowerCase()]}
-							/>
-						))
-					}
-				</div>
-				<div>
-					<p class={sendEmailTitleClass}>Send me a message!</p>
-					<a class={emailClass} href={`mailto:${contact.email}`}>
-						{contact.email}
-					</a>
-				</div>
-				<div class={expandedClass}></div>
-				<footer>
-					<a class={downloadResumeClass} href="/resume">
-						Download my resume
-					</a>
-				</footer>
-			</aside>
+			{!Astro.props.noAside &&
+				<aside class={asideClass}>
+					<h1 class={titleClass}>Arthur<br />Fontaine</h1>
+					<div class={socialsClass}>
+						{
+							social.social.map((social) => (
+								<a
+									href={social.link}
+									aria-label={social.name}
+									set:html={icons[social.name.toLowerCase()]}
+								/>
+							))
+						}
+					</div>
+					<div>
+						<p class={sendEmailTitleClass}>Send me a message!</p>
+						<a class={emailClass} href={`mailto:${contact.email}`}>
+							{contact.email}
+						</a>
+					</div>
+					<div class={expandedClass}></div>
+					<footer>
+						<a class={downloadResumeClass} href="/resume">
+							Download my resume
+						</a>
+					</footer>
+				</aside>
+			}
 			<main class={mainClass}>
 				<slot />
 			</main>
