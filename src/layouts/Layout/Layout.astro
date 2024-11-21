@@ -30,6 +30,8 @@ export interface Props {
 	title: string;
 	description: string;
 	noAside?: boolean;
+	ogImage?: string;
+	ogLargeImage?: boolean;
 }
 
 const { title, description } = Astro.props;
@@ -47,19 +49,19 @@ const { title, description } = Astro.props;
 			title={title}
 			description={description}
 			twitter={{
-				card: "summary",
-				site: "@f_arthr",
-				creator: "@f_arthr",
+				card: Astro.props.ogLargeImage ? "summary_large_image" : "summary",
+				site: "@voithure",
+				creator: "@voithure",
 			}}
 			openGraph={{
 				basic: {
 					title,
 					type: "website",
 					url: "https://arthurfontaine.fr",
-					image: "https://arthurfontaine.fr/og-image.png",
+					image: Astro.props.ogImage ?? "https://arthurfontaine.fr/og-image.png",
 				},
 				image: {
-					url: "https://arthurfontaine.fr/og-image.png",
+					url: Astro.props.ogImage ?? "https://arthurfontaine.fr/og-image.png",
 					alt: "Arthur Fontaine",
 				},
 			}}

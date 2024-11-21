@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout/Layout.astro";
+import Layout from "../../../layouts/Layout/Layout.astro";
 import {
   blogClass,
   headerClass,
@@ -11,8 +11,8 @@ import {
   translationItemClass,
   translationListClass,
   translationListContainerClass,
-} from "./blog.css";
-import loadIcons from "../../utils/loadIcons";
+} from "../blog.css";
+import loadIcons from "../../../utils/loadIcons";
 
 export async function getStaticPaths() {
   const pages = await getCollection("blog");
@@ -36,7 +36,7 @@ const { Content } = await page.render();
 const icons = await loadIcons(["arrow-left"]);
 ---
 
-<Layout title={title} description={description} noAside>
+<Layout title={title} description={description} noAside ogImage={`https://arthurfontaine.fr/${Astro.url.pathname}og.png`} ogLargeImage>
   <header class={headerClass}>
     <a href="/blog" aria-label="Return to home" class={returnToHomeClass}>
       <svg set:html={icons["arrow-left"]} class={returnToHomeIconClass} />
