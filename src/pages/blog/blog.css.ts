@@ -70,23 +70,23 @@ globalStyle(`${blogClass} > main > h1`, {
 
 globalStyle(`${blogClass} h1`, {
   fontSize: vars.font.size.l,
-  marginTop: vars.space.l,
+  marginTop: vars.space.xl,
 })
 
 globalStyle(`${blogClass} h2`, {
   fontSize: vars.font.size.m,
   fontWeight: vars.font.weight.medium,
-  marginBlock: vars.space.m,
+  marginBlock: vars.space.l,
 })
 
 globalStyle(`${blogClass} h3`, {
   fontSize: vars.font.size.s,
   fontWeight: vars.font.weight.medium,
-  marginBlock: vars.space.m,
+  marginBlock: vars.space.l,
 })
 
 globalStyle(`${blogClass} hr`, {
-  marginBlock: vars.space.l,
+  marginBlock: vars.space.xl,
 })
 
 globalStyle(`${blogClass} time`, {
@@ -98,10 +98,14 @@ globalStyle(`${blogClass} time`, {
 
 globalStyle(`${blogClass} p`, {
   fontSize: '1rem',
-  marginBlock: vars.space.s,
+  marginBlock: vars.space.m,
   fontWeight: vars.font.weight.light,
   fontFamily: 'Trispace',
   lineHeight: 1.4,
+})
+
+globalStyle(`${metaContainerClass} p`, {
+  marginBlock: vars.space.s,
 })
 
 globalStyle(`${blogClass} a`, {
