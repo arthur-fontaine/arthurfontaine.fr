@@ -14,7 +14,7 @@ translationKeys:
 
 # Next.js : Le framework qui vous enferme plus qu'il ne vous libère, et comment s'en affranchir
 
-Next.js, développé par Vercel, est un framework React populaire qui a
+[Next.js](https://nextjs.org/), développé par [Vercel](https://vercel.com/), est un framework React populaire qui a
 révolutionné le développement d'applications web en offrant des
 fonctionnalités avancées comme le Server-Side Rendering.
 
@@ -25,41 +25,79 @@ Vercel, et proposer des alternatives *selon moi, meilleures*.
 
 ## Les dangers de la dépendance à Next.js et Vercel
 
-### Un modèle économique contraignant
+### Des optimisations exclusives
 
-Utiliser Next.js revient à s'enchaîner volontairement à un modèle économique
-qui peut devenir restrictif. Vercel, la plateforme derrière Next.js, propose
-une "simple" surcouche à AWS, mais avec des tarifs largement supérieurs
-malgré leur offre "gratuite" qui n'a d'autre but que d'attirer les
-développeurs.
+Vercel a conçu l'infrastructure de son service d'hébergement pour épouser
+parfaitement Next.js, comme deux engrenages qui s'emboîtent parfaitement.
+En hébergeant un site Next.js sur Vercel, vous bénéficiez d'optimisations
+exclusives, difficilement reproductibles ailleurs. C’est une stratégie
+délibérée de verrouillage technologique.
 
-On pourrait penser que l'offre gratuite de Vercel peut suffire pour la
-plupart des petits projets que l'on développe. Mais en réalité, si votre site
-subit un DDoS (attaque par déni de service, où l'attaquant tente de spammer
-votre site pour le rendre inaccessible), vous atteindrez rapidement la limite
-de bande passante, et Vercel vous facturera des frais exorbitants. On retrouve
-beaucoup de témoignages de développeurs ayant été confrontés à cette situation,
-comme [ce post sur Twitter](https://x.com/T_Zahil/status/1808764723103416620).
+Les performances de Next.js sur Vercel sont si fluides et si optimisées qu’il
+devient presque impossible de retrouver une expérience similaire sur d'autres
+plateformes. Face à cette situation, [OpenNext](https://opennext.js.org/) est né : une initiative
+communautaire qui cherche à casser ce monopole en permettant aux développeurs
+de profiter des mêmes optimisations sur des solutions d’hébergement
+alternatives.
 
-Vercel encourage (pour ne pas dire force) également fortement
-les développeurs à utiliser son propre service d'hébergement, rendant difficile
-l'utilisation d'alternatives.
+Le comportement de Vercel me semble profondément immoral. Cette approche,
+qui consiste à développer un framework open source, tout en favorisant son
+propre service d'hébergement propriétaire, au détriment de ses concurrents
+et même de ses utilisateurs qui souhaiteraient auto-héberger leur site,
+ne correspond pas aux valeurs de l'open source qui m'ont été transmises.
 
-Des initiatives communautaires comme [OpenNext](https://opennext.js.org/) tentent de limiter cet
-enfermement technologique, mais la stratégie de Next.js reste claire :
-construire un écosystème difficile et coûteux à quitter.
+Le pire est que Vercel semble vouloir aller encore plus loin dans cette
+direction. C'est ce qu'illustre l'[acquisition de Turbo par Vercel](https://vercel.com/blog/vercel-acquires-turborepo). En
+prévoyant de faire de [Turbopack le builder par défaut de Next.js](https://turbo.build/pack/docs/roadmap#:~:text=Next%2C%20we%20want%20to%20use%20Turbopack%20to%20power%20production%20builds%20with%20Next.js.%20We%20think%20that%20this%20will%20result%20in%20a%20big%20boost%20in%20performance%2C%20especially%20when%20integrated%20with%20remote%20caching.), Vercel pousse
+encore plus loin sa logique d'optimisations exclusives. Les optimisations de
+Turbopack seront progressivement conçues pour [tirer parti des spécificités des serveurs de Vercel](https://turbo.build/pack/docs/roadmap#remote-caching-and-replication),
+rendant encore plus complexe la tâche de se passer d'eux. Ce n'est plus
+seulement une question d'hébergement, mais désormais aussi de compilation et de
+build, créant des dépendances techniques toujours plus profondes et difficiles
+à contourner.
 
-Cet objectif d'enfermement s'est confirmé avec la récente acquisition de
-[Turbo](https://turbo.build/) par Vercel. En achetant Turbo, et en voulant
-utiliser Turbopack comme builder par défaut pour Next.js, Vercel renforce
-son influence sur tout projet Next.js.
+### Des prix exorbitants
+
+Une fois que vous êtes enfermé dans l'écosystème Vercel, vous êtes à la merci
+de ses tarifs. Vercel propose d'ailleurs une offre "gratuite" qui n'a d'autre but
+que de convaincre les développeurs qui n'avaient pas déjà été convaincus par les
+optimisations exclusives de Vercel. Mais dès que votre projet prend de l'ampleur,
+vous risquez de vous retrouver avec des factures exorbitantes.
+
+J'ai en mémoire plusieurs témoignages de développeurs ayant comparé les coûts
+d'hébergement entre Vercel et d'autres solutions, et les résultats sont tout
+simplement ahurissants.
+
+[@karolyidav a partagé son calcul sur Twitter](https://x.com/karolyidav/status/1833138429716050227).
+Un même site hébergé sur Vercel coûterait 35818 dollars par mois, contre
+seulement 120 dollars sur Hetzner. Vous avez bien lu : héberger un site sur
+Vercel coûterait 300 fois plus cher que sur Hetzner.
+
+En fouillant un peu plus, on trouve d'autres témoignages similaires, comme
+[@zackerydev qui compare le devis de Vercel à sa facture actuelle AWS](https://x.com/zackerydev/status/1717556827569660378).
+Résultat : pour de simples fichiers statiques, Vercel lui aurait coûté environ
+3000 dollars par mois, contre 12 dollars seulement sur AWS (soit 277 fois moins
+cher).
+
+Ces coûts sont difficiles justifiables selon moi d'un point de vue technique.
+Ils pourraient être expliqués par la simplicité d'utilisation de Vercel. Mais
+cette simplicité est simplement due à la stratégie de verrouillage
+technologique de Vercel. En gros, Vercel vous fait payer le prix d'un problème
+qu'il a lui-même créé.
+
+En plus de ces coûts exorbitants, Vercel a également une éthique douteuse en
+matière de facturation. [Thomas Sanlis a partagé son expérience sur Twitter](https://x.com/T_Zahil/status/1808764723103416620).
+Après avoir subi une attaque DDoS (attaque par déni de service, où l'attaquant
+tente de spammer votre site pour le rendre inaccessible) que Vercel n'a pas
+su contrer (malgré [ses promesses de protection contre les DDoS](https://vercel.com/docs/security/ddos-mitigation)),
+il a reçu une facture de 523 dollars de la part de Vercel qu'il a été [contraint de payer](https://x.com/T_Zahil/status/1819779707442761980).
 
 ### Des performances discutables
 
-Les performances de Next.js soulèvent des questions importantes. En plus de
-reposer sur le rendu côté serveur, qui peut introduire une charge de travail
-conséquente pour le serveur, Next.js est souvent critiqué pour sa lenteur
-et sa consommation excessive de ressources.
+Les performances de Next.js soulèvent également des questions importantes. En
+plus de reposer sur le rendu côté serveur, qui peut introduire une charge de
+travail conséquente pour le serveur, Next.js est souvent critiqué pour sa
+lenteur et sa consommation excessive de ressources.
 
 Voici une liste non exhaustive des benchmarks effectués par des tiers :
 
@@ -67,39 +105,40 @@ Voici une liste non exhaustive des benchmarks effectués par des tiers :
 - [Le temps de réponse de Next.js est 6 fois plus lent que celui de Nuxt.js](https://x.com/icarusgkx/status/1664015769280163840)
 - [Le bundle de Next.js qui est ~7 fois plus gros que celui de SvelteKit](https://x.com/khromov/status/1831123411789025365)
 
-### Des montées de versions risquées
+Au-delà de simples métriques de performance, ces résultats ont des implications
+concrètes, économiques et environnementales non négligeables. Ces performances
+médiocres se traduisent directement par des besoins serveur plus importants :
+des processeurs plus puissants, plus de RAM, une consommation électrique
+accrue.
 
-Les habitués de Next.js savent qu'il faut être prudent lors des mises à jour.
-Plusieurs développeurs ont rapporté des expériences où une simple mise à
-jour d'une version mineure incluait des breaking changes inattendus.
-Ces modifications peuvent entraîner des dysfonctionnements majeurs, allant
-jusqu'à rendre une application entièrement inopérante.
-
-Ce manque de stabilité et de prévisibilité dans les mises à jour peut non
-seulement ralentir le développement, mais aussi compromettre la fiabilité des
-applications en production, obligeant les équipes à consacrer un temps précieux
-à la résolution de problèmes imprévus. Elle traduit aussi selon moi un manque
-de respect envers les développeurs de la part de l'équipe Vercel.
+Dans un contexte où la sobriété numérique devient un enjeu écologique crucial,
+ces performances pléthoriques sont plus qu'un simple inconvénient technique :
+elles représentent un coût environnemental direct. Un serveur surconsommant de
+l'énergie pour exécuter une application Next.js, c'est autant de ressources
+gaspillées, autant de CO2 émis inutilement.
 
 ### Des risques systémiques
 
 L'histoire du web a montré à plusieurs reprises les dangers liés à une
 dépendance excessive envers des solutions propriétaires. Prenons l'exemple
-de [Parse](https://en.wikipedia.org/wiki/Parse,_Inc.), racheté puis fermé par Facebook en 2017. Bien que cette fermeture
-n'ait pas provoqué la disparition directe d’entreprises, elle a mis des
-centaines de startups dans l'embarra, les obligeant à migrer en urgence
-vers d'autres solutions, provoquant des coûts financiers et temporels
-non prévus.
+de [Parse](https://en.wikipedia.org/wiki/Parse,_Inc.), racheté puis fermé par
+Facebook en 2017. Bien que cette fermeture n'ait pas provoqué la disparition
+directe d’entreprises, elle a mis des centaines de startups dans l'embarra, les
+obligeant à migrer en urgence vers d'autres solutions, provoquant des coûts
+financiers et temporels non prévus.
 
 Une situation similaire pourrait survenir avec Vercel. Une augmentation
 brutale des prix ou des vulnérabilités majeures pourraient avoir des
 répercussions importantes sur les projets dépendants.
 
+Ce risque est d'autant plus grand que Vercel est une startup, et une entreprise
+qui [n'a pas encore réussi à être rentable](https://research.contrary.com/company/vercel#:~:text=However%2C%20a%20former%20Vercel%20employee%20reported%20neither%20Vercel%20nor%20Netlify%20had%20achieved%20profitability%20as%20of%202023).
+
 ### D'autres problèmes subjectifs
 
-Je pourrais également parler de l'architecture des projets Next.js, ou d'autres
-points négatifs encore, mais ce sont des opinions subjectives que je traiterais
-peut-être dans un autre article.
+Je pourrais également parler de l'architecture de fichiers des projets Next.js,
+ou d'autres points négatifs encore, mais ce sont des opinions subjectives que
+je traiterais peut-être dans un autre article.
 
 ## Deux paradigmes web, deux défis techniques
 
@@ -119,7 +158,10 @@ Grâce à sa simplicité, on peut créer un site performant et élégant en quel
 minutes et quelques lignes de code. Malgré cette accessibilité, Astro reste
 adaptable et puissant : il permet une personnalisation avancée pour répondre
 aussi aux exigences de sites plus complexes. Et si vous avez tout de même
-besoin de SSR (Server-Side Rendering), Astro le supporte nativement.
+besoin de SSR (Server-Side Rendering), Astro le supporte nativement. Puis en
+opposition à Next.js, Astro est déployable sur à peu près toutes les
+plateformes d'hébergement auxquelles vous pouvez penser (en témoigne [les 26
+adaptateurs officiels](https://docs.astro.build/en/guides/deploy/)).
 
 Son écosystème de plugins est également un atout majeur. Par exemple, certains
 plugins dédiés au SEO permettent d’optimiser automatiquement le référencement
