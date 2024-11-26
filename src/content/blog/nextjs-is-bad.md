@@ -1,6 +1,6 @@
 ---
-title: "Next.js: The framework that traps you more than it frees you, and how to break free"
-description: Behind Next.js, the most popular React framework, lies an economic and technological model that can quickly become a trap for developers. In this article, we explore the dangers of dependency on Next.js and Vercel and suggest alternatives.
+title: "Next.js: The Framework That Traps You More Than It Frees You, and How to Break Free"
+description: Behind Next.js, the most popular React framework, lies an economic and technological model that can quickly become a trap for developers. In this article, we explore the dangers of relying on Next.js and Vercel, and propose alternatives.
 date: 2024-11-21
 tags:
   - nextjs
@@ -12,135 +12,158 @@ translationKeys:
   fr: nextjs-est-nul
 ---
 
-# Next.js: The framework that traps you more than it frees you, and how to break free
+# Next.js: The Framework That Traps You More Than It Frees You, and How to Break Free
 
-Next.js, developed by Vercel, is a popular React framework that has
-revolutionized web application development by offering advanced features
-such as Server-Side Rendering.
+[Next.js](https://nextjs.org/), developed by [Vercel](https://vercel.com/), is
+a popular React framework that has revolutionized web application development
+with advanced features like Server-Side Rendering.
 
-However, behind this appealing facade lies an economic and technological
-model that can quickly become a trap for developers. In this article, we will
-explore the dangers of dependency on Next.js and Vercel and propose
-*in my opinion, better* alternatives.
+However, behind this attractive facade lies an economic and technological
+model that can quickly become a trap for developers. In this article, we
+explore the dangers of relying on Next.js and Vercel, and propose alternatives
+that are, *in my opinion, better*.
 
-## The dangers of dependency on Next.js and Vercel
+## The Dangers of Relying on Next.js and Vercel
 
-### A constraining economic model
+### Exclusive Optimizations
 
-Using Next.js is akin to voluntarily chaining yourself to an economic model
-that can become restrictive. Vercel, the platform behind Next.js, offers a
-"simple" layer over AWS but at significantly higher prices, despite their
-"free" tier, which primarily serves to lure developers.
+Vercel has designed its hosting infrastructure to integrate perfectly with
+Next.js, like two perfectly interlocking gears. Hosting a Next.js site on
+Vercel provides exclusive optimizations that are hard to replicate elsewhere.
+This is a deliberate strategy of technological lock-in.
 
-You might think Vercel's free tier suffices for most small projects. But in
-reality, if your site faces a DDoS attack (denial of service attack, where
-an attacker spams your site to render it inaccessible), you'll quickly hit
-the bandwidth limit, and Vercel will charge you exorbitant fees. Many
-developers have shared their experiences facing such situations, like [this
-post on Twitter](https://x.com/T_Zahil/status/1808764723103416620).
+The performance of Next.js on Vercel is so seamless and optimized that it
+becomes almost impossible to achieve similar results on other platforms. In
+response, [OpenNext](https://opennext.js.org/) emerged: a community initiative
+aiming to break this monopoly by enabling developers to enjoy the same
+optimizations on alternative hosting solutions.
 
-Vercel also strongly encourages (if not forces) developers to use its own
-hosting service, making it difficult to opt for alternatives.
+I find Vercel’s approach deeply unethical. This tactic of developing
+open-source software while favoring its proprietary hosting service—at the
+expense of competitors and even users who wish to self-host—goes against the
+open-source values that I hold dear.
 
-Community initiatives like [OpenNext](https://opennext.js.org/) aim to limit
-this technological lock-in, but Next.js's strategy remains clear: to build
-an ecosystem that's costly and challenging to leave.
+What’s worse is that Vercel seems intent on pushing this strategy even
+further. The [acquisition of Turbo by Vercel](https://vercel.com/blog/vercel-acquires-turborepo)
+illustrates this. By planning to make [Turbopack the default builder for Next.js](https://turbo.build/pack/docs/roadmap#:~:text=Next%2C%20we%20want%20to%20use%20Turbopack%20to%20power%20production%20builds%20with%20Next.js.),
+Vercel is doubling down on its exclusive optimization logic. Turbopack
+optimizations will gradually be designed to [leverage Vercel’s server-specific features](https://turbo.build/pack/docs/roadmap#remote-caching-and-replication),
+making it even more challenging to avoid reliance on Vercel. This extends
+beyond hosting to areas like compilation and builds, creating deeper and
+harder-to-break technical dependencies.
 
-This intent to lock developers in was confirmed with the recent acquisition
-of [Turbo](https://turbo.build/) by Vercel. By acquiring Turbo and pushing
-Turbopack as the default builder for Next.js, Vercel strengthens its grip
-on all Next.js projects.
+### Exorbitant Prices
 
-### Questionable performance
+Once locked into the Vercel ecosystem, you are at the mercy of its pricing.
+Vercel offers a "free" tier designed to lure developers not already swayed by
+its exclusive optimizations. But as your project grows, you may find yourself
+facing exorbitant bills.
 
-Next.js's performance raises significant concerns. Beyond relying on
-server-side rendering, which can introduce a heavy workload for the server,
-Next.js is often criticized for its slowness and excessive resource
+I recall several developer testimonials comparing hosting costs between Vercel
+and other solutions, and the results are simply staggering.
+
+[@karolyidav shared their calculations on Twitter](https://x.com/karolyidav/status/1833138429716050227).
+Hosting the same site on Vercel would cost $35,818 per month compared to just
+$120 on Hetzner. That’s right: hosting on Vercel could be
+**300 times more expensive** than on Hetzner.
+
+Other similar testimonials abound, such as [@zackerydev comparing Vercel’s quote to their current AWS bill](https://x.com/zackerydev/status/1717556827569660378).
+The result? For simple static files, Vercel would have cost approximately
+$3,000 per month compared to just $12 on AWS—a **277x price difference**.
+
+These costs are difficult to justify technically. They may be explained by
+Vercel’s ease of use, but that ease is a direct result of Vercel’s lock-in
+strategy. In essence, Vercel charges you for a problem it created.
+
+Adding to this, Vercel’s billing practices raise ethical concerns. [Thomas Sanlis shared his experience on Twitter](https://x.com/T_Zahil/status/1808764723103416620).
+After suffering a DDoS attack that Vercel failed to mitigate (despite
+[promising DDoS protection](https://vercel.com/docs/security/ddos-mitigation)),
+he received a $523 invoice from Vercel, which he was [forced to pay](https://x.com/T_Zahil/status/1819779707442761980).
+
+### Questionable Performance
+
+Next.js performance also raises significant concerns. Beyond its reliance on
+server-side rendering — which can impose a significant workload on servers —
+Next.js is often criticized for its slowness and resource consumption.
+
+Here are some non-exhaustive benchmarks:
+
+- [Next.js is 170x slower than React for a "Hello World"](https://x.com/thdxr/status/1777782835249553517)
+- [Next.js response times are 6x slower than Nuxt.js](https://x.com/icarusgkx/status/1664015769280163840)
+- [Next.js bundles are ~7x larger than SvelteKit’s](https://x.com/khromov/status/1831123411789025365)
+
+Beyond mere metrics, these results have concrete economic and environmental
+implications. Poor performance translates directly into higher server
+requirements: more powerful CPUs, more RAM, and increased electricity
 consumption.
 
-Here is a non-exhaustive list of benchmarks conducted by third parties:
+In a world where digital sustainability is becoming a crucial issue, these
+bloated performance requirements aren’t just a technical inconvenience—they
+represent a direct environmental cost. An energy-hungry server running a
+Next.js application means wasted resources and unnecessary CO2 emissions.
 
-- [Next.js is 170 times slower than React for a "Hello World"](https://x.com/thdxr/status/1777782835249553517)
-- [Next.js response times are six times slower than Nuxt.js](https://x.com/icarusgkx/status/1664015769280163840)
-- [Next.js bundles are ~7 times larger than SvelteKit's](https://x.com/khromov/status/1831123411789025365)
+### Systemic Risks
 
-### Risky version upgrades
+Web history has repeatedly shown the dangers of over-reliance on proprietary
+solutions. Take the example of [Parse](https://en.wikipedia.org/wiki/Parse,_Inc.),
+acquired and later shut down by Facebook in 2017. Although its closure didn’t
+directly kill businesses, it left hundreds of startups scrambling to migrate
+to alternative solutions, incurring unplanned financial and time costs.
 
-Next.js users know to tread cautiously with updates. Several developers have
-reported experiences where a minor version update introduced unexpected
-breaking changes. These changes can cause major disruptions, even rendering
-an application entirely inoperable.
+A similar situation could occur with Vercel. A sudden price hike or major
+vulnerabilities could have significant repercussions for dependent projects.
 
-This lack of stability and predictability in updates can not only slow down
-development but also compromise the reliability of production applications,
-forcing teams to dedicate valuable time to fixing unforeseen issues. It also
-reflects, in my opinion, a lack of respect for developers from Vercel's team.
+This risk is compounded by the fact that Vercel is a startup—one that [has yet to achieve profitability](https://research.contrary.com/company/vercel#:~:text=However%2C%20a%20former%20Vercel%20employee%20reported%20neither%20Vercel%20nor%20Netlify%20had%20achieved%20profitability%20as%20of%202023).
 
-### Systemic risks
+### Other Subjective Issues
 
-The history of the web has repeatedly demonstrated the dangers of excessive
-dependency on proprietary solutions. Consider [Parse](https://en.wikipedia.org/wiki/Parse,_Inc.), which was acquired
-and shut down by Facebook in 2017. While its closure didn't directly
-eliminate businesses, it left hundreds of startups scrambling to migrate to
-other solutions, incurring unforeseen financial and time costs.
+I could also mention the file architecture of Next.js projects or other
+negative aspects, but these are subjective opinions I might explore in another
+article.
 
-A similar situation could arise with Vercel. A sudden price hike or major
-vulnerabilities could have significant repercussions on projects that depend
-on it.
-
-### Other subjective issues
-
-I could also discuss Next.js project architecture or other drawbacks, but
-these are subjective opinions I might address in another article.
-
-## Two web paradigms, two technical challenges
+## Two Web Paradigms, Two Technical Challenges
 
 The modern web landscape fundamentally divides into two categories: landing
 pages and complex applications. Each requires a distinct technical approach
-that Next.js doesn't always effectively address.
+that Next.js doesn’t always serve effectively.
 
-### Landing Pages: The power of static content
+### Landing Pages: The Power of Static
 
-For landing pages, SSG (Static Site Generation) is an ideal solution. By
-generating a site statically, you gain exceptional performance: instant load
-times, low computational cost, enhanced security, and SEO optimization.
+For landing pages, SSG (Static Site Generation) is an ideal solution.
+Generating a static site provides exceptional performance: instant loading,
+low computational cost, enhanced security, and optimized SEO.
 
 [Astro](https://astro.build/) is an excellent choice for building landing
-pages. Its simplicity allows you to create a performant and elegant site in
-minutes with just a few lines of code. Despite its accessibility, Astro
-remains adaptable and powerful, enabling advanced customization for more
-complex site requirements. If you still need SSR (Server-Side Rendering),
-Astro supports it natively.
+pages. Its simplicity allows you to create high-performing, elegant sites in
+minutes with just a few lines of code. Despite its accessibility, Astro is
+highly adaptable and powerful, accommodating the needs of more complex sites.
+And if you still need SSR (Server-Side Rendering), Astro supports it natively.
+Unlike Next.js, Astro is deployable on virtually any hosting platform ([as evidenced by its 26 official adapters](https://docs.astro.build/en/guides/deploy/)).
 
-Its ecosystem of plugins is another major asset. For instance, plugins
-dedicated to SEO automatically optimize site rankings, providing intuitive
-configuration and effective results without unnecessary complexity.
+Combining SSG with a CDN like Cloudflare allows you to serve tens of millions
+of pages at extremely low costs (just a few euros), whereas services like
+Vercel quickly become expensive.
 
-Finally, combining SSG with a CDN like Cloudflare allows you to serve tens
-of millions of pages at extremely low costs (just a few euros), whereas
-services like Vercel can quickly become expensive.
+### Web Applications: The Simplicity of CSR
 
-### Web Applications: The simplicity of CSR
+For complex applications, CSR (Client-Side Rendering) is often sufficient, as
+SEO isn’t usually a concern. Here, [Vite](https://vite.dev/) shines as a fast
+and efficient build tool that, for me, embodies the open-source ethos.
 
-For complex applications, CSR (Client-Side Rendering) is often sufficient
-since there are no specific SEO requirements. In this context, tools like
-[Vite](https://vite.dev/) shine as both fast and performant build tools,
-exemplifying what I consider the ideal open-source project.
+However, building a full application with Vite isn’t as straightforward as
+with Next.js. That’s why I developed [Agrume](https://agrume.js.org/), a
+library that “plugs into” Vite, making backend development as easy as Next.js
+but without compromising flexibility.
 
-However, building a complete application with Vite isn't as straightforward
-as with Next.js. That's why I developed [Agrume](https://agrume.js.org/), a
-library that "plugs into" Vite, making backend development as simple as with
-Next, but without sacrificing flexibility.
-
-Combining React, Vite, Agrume, [Tanstack Query](https://tanstack.com/query/),
-and an ORM allows for modern, simple architecture independent of proprietary
-platforms. I'll soon share a complete template to kickstart a project with
-this stack.
+By combining React, Vite, Agrume, [Tanstack Query](https://tanstack.com/query/),
+and an ORM, you can build modern architectures that are simple and free from
+proprietary platform constraints. I’ll soon share a complete template for
+starting a project with this stack.
 
 ## Conclusion
 
-Next.js has facilitated important advances for web applications, but its
-ecosystem relies on a model that can be restrictive in terms of costs and
+Next.js has driven significant advancements for web applications, but its
+ecosystem relies on a model that’s often restrictive in terms of cost and
 technology. By exploring tools like Astro or Vite, developers can build
-high-performing solutions while remaining confident about the evolution of
-their projects and needs.
+high-performance solutions while remaining free to evolve their projects and
+meet their needs.
