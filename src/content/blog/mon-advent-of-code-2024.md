@@ -97,8 +97,8 @@ presque) tout en ayant une syntaxe plus agréable. Je vais les explorer pour
 voir s'ils tiennent leurs promesses.
 
 - **[Go](https://go.dev/) :** Un langage que j'utilise régulièrement, notamment pour écrire mes
-  microservices. J'apprécie sa simplicité et son sentiment de concevoir des
-  programmes sans bugs. J'aimerais le consolider.
+  microservices. J'apprécie sa simplicité et le sentiment de concevoir des
+  programmes sans bugs qu'il procure. J'aimerais le consolider.
 - **[Nim](https://nim-lang.org/) :** Un langage qui mélange la facilité de Python, la puissance de C et
   une compilation native performante.
 - **[V](https://vlang.io/) :** Un langage minimaliste et rapide, conçu pour être facile à apprendre
