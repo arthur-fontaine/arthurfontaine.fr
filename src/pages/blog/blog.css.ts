@@ -130,6 +130,35 @@ globalStyle(`${blogClass} li::before`, {
   paddingRight: vars.space.s,
 })
 
+globalStyle(`${blogClass} table`, {
+  width: "100%",
+  borderCollapse: "collapse",
+  marginBlock: vars.space.l,
+})
+
+globalStyle(`${blogClass} th`, {
+  textAlign: "left",
+  padding: vars.space.s,
+  borderBottom: `1px solid ${vars.color.border}`,
+})
+
+globalStyle(`${blogClass} td`, {
+  padding: vars.space.s,
+  borderBottom: `1px solid ${vars.color.border}`,
+})
+
+globalStyle(`${blogClass} tr:nth-child(2n)`, {
+  backgroundColor: `color-mix(in srgb, ${vars.color.border}, transparent 98%)`,
+})
+
+globalStyle(`${blogClass} tr:nth-child(2n + 1)`, {
+  backgroundColor: `color-mix(in srgb, ${vars.color.border}, transparent 95%)`,
+})
+
+globalStyle(`${blogClass} thead tr`, {
+  backgroundColor: 'transparent!important',
+})
+
 export const tagsClass = style({
   display: "flex",
   gap: vars.space.m,

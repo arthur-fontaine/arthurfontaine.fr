@@ -141,6 +141,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
+"mon-advent-of-code-2024.md": {
+	id: "mon-advent-of-code-2024.md";
+  slug: "mon-advent-of-code-2024";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "nextjs-est-nul.md": {
 	id: "nextjs-est-nul.md";
   slug: "nextjs-est-nul";
