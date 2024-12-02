@@ -150,3 +150,60 @@ prévisionnel :
 | D          | 1               |
 | V          | 1               |
 | Nim        | 1               |
+
+## Jour 1 : Gleam
+
+Pour commencer l'aventure, j’ai choisi Gleam, un langage découvert en 2024. Ce
+choix s’est imposé par sa syntaxe élégante, son orientation fonctionnelle et sa
+capacité à compiler en JavaScript. Et il a largement dépassé mes attentes.
+
+Dès l’initialisation du projet, Gleam se démarque par sa simplicité. La
+commande `gleam new day1` crée un projet complet et bien structuré : fichier de
+configuration, `.gitignore`, `README.md`, dossier `src` pour le code source, et
+`test` pour les tests. Tout est prêt à l’emploi, ce qui permet de se concentrer
+sur l’essentiel : résoudre le problème.
+
+Le langage en lui-même est un vrai plaisir à utiliser. Sa syntaxe est claire et
+lisible, mais ce qui impressionne, c’est son typage automatique. Prenons un
+exemple concret :
+
+```gleam
+import gleam/string
+
+fn function(arg1) {
+  string.split(arg1, " ")
+}
+```
+
+Gleam déduit automatiquement que `arg1` est de type `String`, simplement parce
+que la fonction `string.split` attend une chaîne de caractères en premier
+argument. Pas besoin de spécifier manuellement les types : Gleam s'en charge,
+même pour des fonctions complexes. Cette capacité à deviner le typage rend le
+code agréable à écrire.
+
+Autre point fort : l’opérateur `|>`. Il permet de chaîner les fonctions de
+manière lisible et naturelle, presque comme un pseudo-code. C’est un vrai atout
+pour structurer des algorithmes en étapes claires et compréhensibles. Bien
+qu’il ne soit pas exclusif à Gleam, il est emblématique de la programmation
+fonctionnelle.
+
+J’avais déjà expérimenté un concept similaire en TypeScript grâce à [Effect](https://effect.website/)
+et sa fonction `pipe`. Cependant, l’intégration native d’un opérateur comme
+`|>` dans Gleam apporte une élégance supplémentaire : il supprime la nécessité
+d’appeler explicitement une fonction et améliore la fluidité du code. Un vrai plaisir
+à utiliser.
+
+Cependant, l’immuabilité complète, une caractéristique propre à Gleam et à
+d’autres langages fonctionnels, demande un temps d’adaptation. Par exemple,
+ajouter un élément à une liste existante est impossible. À la place, il faut
+créer une nouvelle liste à partir de l’ancienne. Cela peut être déroutant au
+début, d’autant que la communauté Gleam, encore jeune, offre moins de
+ressources pour trouver des solutions rapidement.
+
+Pour résoudre ce type de problème, la fonction `fold` (similaire à `reduce` en
+JavaScript) s’est révélée précieuse. Elle permet de parcourir une liste tout en
+accumulant un résultat.
+
+Finalement, j’ai réussi à résoudre le problème du premier jour avec Gleam.
+L’expérience a été enrichissante, et je suis impatient de continuer à découvrir
+ce langage au jour 2.
