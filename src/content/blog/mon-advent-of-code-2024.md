@@ -270,3 +270,59 @@ je pressens que Gleam pourrait bien être un de mes compagnons de programmation
 en 2025. J'aimerais beaucoup explorer ses capacités en développement web,
 notamment avec des frameworks comme [Lustre](https://hexdocs.pm/lustre/) pour
 le frontend et [Wisp](https://hexdocs.pm/wisp/) pour le backend.
+
+## Jour 3 : L'Épreuve d'OCaml
+
+OCaml était mon objectif pour ce troisième jour. Depuis quelque temps,
+plusieurs développeurs me recommandaient ce langage, éveillant ma curiosité.
+J'avais entendu des rumeurs négatives, mais je voulais me faire ma propre
+opinion. Après tout, TypeScript, mon langage de prédilection, n'est pas non
+plus exempt de critiques.
+
+L'installation a été simple et j'ai été agréablement surpris par la
+documentation du langage. Claire, bien structurée, elle m'a permis de prendre
+rapidement en main les bases d'OCaml. Mon premier "Hello World" a été un jeu
+d'enfant. J'étais prêt à attaquer le problème de l'Advent of Code. C'est là que
+les choses ont commencé à se complexifier.
+
+La syntaxe ? Une question d'habitude. Mais la documentation des bibliothèques
+m'a mis au défi. Une heure complète à chercher comment faire des regex. J'ai
+d'abord utilisé la bibliothèque `Str`, avant d'apprendre via un forum qu'elle
+était dépassée et qu'il valait mieux utiliser `Re`. Et quelle galère pour
+trouver comment l'utiliser ! La [documentation officielle](https://ocaml.org/p/re/1.9.0/doc/Re/index.html) contient tout
+simplement zéro exemple. Je n'ai également pas trouvé d'article de blog qui
+m'explique comment faire. J'ai donc dû me débrouiller seul. Pas de ChatGPT
+cette fois, je voulais maximiser mon apprentissage. J'ai tâtonné, j'ai
+expérimenté, et j'ai fini par trouver.
+
+Si une personne rencontrant actuellement ce problème lit ceci, voici comment
+faire une regex en OCaml :
+
+```ocaml
+let get_muls input =
+  let re = Re.Perl.re "mul\\(([0-9]+),([0-9]+)\\)" in
+  let re_compiled = Re.Perl.compile re in
+  Re.all re_compiled input
+  |> List.map (fun group ->
+         let x = Re.Group.get group 1 in
+         let y = Re.Group.get group 2 in
+         (int_of_string x, int_of_string y))
+```
+
+Je trouve que c'est affolant de voir à quel point trouver comment faire une
+simple regex en OCaml peut être difficile. Ce manque de ressources est un vrai
+point faible pour le langage.
+
+Mais OCaml n'est pas qu'un ensemble de défis. [Dune](https://dune.build/), son système de build, m'a
+agréablement surpris. Configuration simple, watcher intégré, et une approche
+qui force le développeur à lancer `dune exec` pour obtenir l'autocomplétion
+dans son IDE. Cette logique me rappelle [Nuxt.js](https://nuxt.com/) et sa génération de types
+TypeScript à la volée.
+
+J'ai aussi appris que le typage automatique n'était pas une fonctionnalité
+unique à Gleam. Et en effet, je me suis remémoré [Ezno](https://kaleidawave.github.io/posts/introducing-ezno/),
+un projet pour TypeScript qui pousse l'inférence de types à l'extrême.
+
+Ces deux prochains jours me diront si OCaml restera un souvenir cauchemardesque
+ou s'il saura me séduire par sa complexité. La partie n'est pas encore
+terminée.
