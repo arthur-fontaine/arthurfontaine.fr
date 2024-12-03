@@ -220,3 +220,53 @@ accumulant un résultat.
 Finalement, j’ai réussi à résoudre le problème du premier jour avec Gleam.
 L’expérience a été enrichissante, et je suis impatient de continuer à découvrir
 ce langage au jour 2.
+
+## Jour 2 : Gleam
+
+Après ma première journée avec Gleam, j'ai pensé qu'il méritait une seconde
+journée. C'est pourquoi j'ai décidé de poursuivre mon exploration de ce langage
+lors du deuxième problème de l'Advent of Code. Mon objectif : plonger plus
+profondément dans ses paradigmes et ses particularités.
+
+Un aspect qui m'a particulièrement marqué est l'utilisation du mot-clé `use`,
+une fonctionnalité que je n'avais jamais vu ailleurs. C'est une façon magique
+de dire "ce code qui suit, transforme-le en une fonction à l'intérieur de mon
+autre fonction". Prenons un exemple concret :
+
+```gleam
+fn parse_lines(lines) {
+  use x <- list.map(lines)
+
+  x
+  |> string.split(" ")
+  // ...
+}
+```
+
+Comparé à l'écriture traditionnelle :
+
+```gleam
+fn parse_lines(lines) {
+  list.map(lines, fn(x) {
+    x
+    |> string.split(" ")
+    // ...
+  })
+}
+```
+
+L'utilisation de `use` permet de ne pas avoir à faire des imbrications
+compliquées. Au lieu de mettre des fonctions les unes dans les autres, on peut
+juste écrire le code à la suite.
+
+Autre particularité notable que je n'avais pas abordée hier : Gleam ne connaît
+pas le mot-clé `return`. La dernière ligne d'une fonction est automatiquement
+sa valeur de retour, une approche qui confirme l'engagement du langage en
+faveur de la simplicité et de la lisibilité.
+
+En résumé, mon intérêt pour Gleam s'est confirmé durant ces deux jours. À voir
+comment j'accrocherai à d'autres langages durant cet Avent of Code 2024, mais
+je pressens que Gleam pourrait bien être un de mes compagnons de programmation
+en 2025. J'aimerais beaucoup explorer ses capacités en développement web,
+notamment avec des frameworks comme [Lustre](https://hexdocs.pm/lustre/) pour
+le frontend et [Wisp](https://hexdocs.pm/wisp/) pour le backend.
