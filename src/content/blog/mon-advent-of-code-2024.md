@@ -1,5 +1,5 @@
 ---
-title: "Advent of Code 2024 : mon expérience"
+title: "Advent of Code 2024 : à la découverte des philosophies du code"
 description: Advent of Code est un événement annuel de programmation qui se déroule en décembre. En 2024, j'ai décidé de le réaliser en utilisant une large variété de langages de programmation. Voici mon expérience.
 date: 2024-12-25
 tags:
@@ -14,7 +14,7 @@ translationKeys:
 
 # Advent of Code 2024 : à la découverte des philosophies du code
 
-Advent of Code est un événement de programmation annuel qui remplace les
+[Advent of Code](https://adventofcode.com/) est un événement de programmation annuel qui remplace les
 traditionnels chocolats du calendrier de l'Avent par des problèmes de code. Du
 1er au 25 décembre, chaque jour, un nouveau problème de programmation est
 publié, conçu comme un petit puzzle algorithmique à résoudre. Ces défis sont
@@ -31,12 +31,12 @@ demanderont un temps d'adaptation significatif. D'autres langages, comme Rust
 ou Zig, des langages bas niveau, impliqueront des concepts de gestion mémoire
 plus complexes que mes habitudes. Le risque principal sera de manquer de temps.
 
-Pourtant, c'est précisément ce défi qui m'attire. La programmation est un
-territoire vaste et infini, parsemé de paradigmes, de syntaxes et de
-philosophies différentes, tous venant de réflexions d'individus liées à leurs
-expériences et à leurs besoins. C'est cette richesse qui m'anime depuis mes
-débuts en programmation : comprendre les différentes manières de penser et
-d'aborder un problème, pour devenir un meilleur développeur.
+Et c'est pourtant ce défi "d'apprentissage large" qui m'attire. La
+programmation est un territoire vaste et infini, parsemé de paradigmes, de
+syntaxes et de philosophies différentes, tous venant de réflexions d'individus
+liées à leurs expériences et à leurs besoins. C'est cette richesse qui m'anime
+depuis mes débuts en programmation : comprendre les différentes manières de
+penser et d'aborder un problème, pour devenir un meilleur développeur.
 
 Mon objectif n'est pas de devenir un expert de chaque langage, mais de
 comprendre leurs philosophies, leurs forces et leurs limitations. C'est une
@@ -111,7 +111,7 @@ voir s'ils tiennent leurs promesses.
 
 - **[Go](https://go.dev/) :** Un langage que j'utilise régulièrement, notamment pour écrire mes
   microservices. J'apprécie sa simplicité et le sentiment de concevoir des
-  programmes sans bugs qu'il procure. J'aimerais le consolider.
+  programmes sans bugs qu'il procure. J'aimerais consolider mes connaissances.
 - **[Nim](https://nim-lang.org/) :** Un langage qui mélange la facilité de Python, la puissance de C et
   une compilation native performante.
 - **[V](https://vlang.io/) :** Un langage minimaliste et rapide, conçu pour être facile à apprendre
@@ -164,17 +164,17 @@ prévisionnel :
 | V          | 1               |
 | Nim        | 1               |
 
-## Jour 1 : Gleam
+## Jour 1 : Mon Premier Jour avec Gleam
 
 Pour commencer l'aventure, j’ai choisi Gleam, un langage découvert en 2024. Ce
 choix s’est imposé par sa syntaxe élégante, son orientation fonctionnelle et sa
 capacité à compiler en JavaScript. Et il a largement dépassé mes attentes.
 
 Dès l’initialisation du projet, Gleam se démarque par sa simplicité. La
-commande `gleam new day1` crée un projet complet et bien structuré : fichier de
-configuration, `.gitignore`, `README.md`, dossier `src` pour le code source, et
-`test` pour les tests. Tout est prêt à l’emploi, ce qui permet de se concentrer
-sur l’essentiel : résoudre le problème.
+commande `gleam new day1` crée un projet complet et bien structuré : un fichier
+de configuration, un `.gitignore`, un `README.md`, un dossier `src` pour le
+code source, et un dossier `test` pour les tests. Tout est prêt à l’emploi, ce
+qui permet de se concentrer sur l’essentiel : résoudre le problème.
 
 Le langage en lui-même est un vrai plaisir à utiliser. Sa syntaxe est claire et
 lisible, mais ce qui impressionne, c’est son typage automatique. Prenons un
@@ -221,12 +221,12 @@ Finalement, j’ai réussi à résoudre le problème du premier jour avec Gleam.
 L’expérience a été enrichissante, et je suis impatient de continuer à découvrir
 ce langage au jour 2.
 
-## Jour 2 : Gleam
+## Jour 2 : Creuser plus profondément avec Gleam
 
-Après ma première journée avec Gleam, j'ai pensé qu'il méritait une seconde
-journée. C'est pourquoi j'ai décidé de poursuivre mon exploration de ce langage
-lors du deuxième problème de l'Advent of Code. Mon objectif : plonger plus
-profondément dans ses paradigmes et ses particularités.
+Lors de la préparation de ce défi, j'avais préssenti le besoin d'accorder à
+Gleam une seconde journée. Je ferai donc ce deuxième problème de l'Advent of
+Code avec Gleam. Mon objectif : plonger plus profondément dans ses paradigmes
+et ses particularités.
 
 Un aspect qui m'a particulièrement marqué est l'utilisation du mot-clé `use`,
 une fonctionnalité que je n'avais jamais vu ailleurs. C'est une façon magique

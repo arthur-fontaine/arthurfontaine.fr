@@ -159,6 +159,29 @@ globalStyle(`${blogClass} thead tr`, {
   backgroundColor: 'transparent!important',
 })
 
+globalStyle(`${blogClass} pre`, {
+  marginBlock: vars.space.l,
+  padding: vars.space.m,
+  borderLeft: `4px solid ${vars.color.blue}`,
+  backgroundColor: `color-mix(in srgb, ${vars.color.border}, transparent 95%)!important`,
+})
+
+globalStyle(`${blogClass} code`, {
+  fontSize: vars.font.size.xs,
+  position: "relative",
+})
+
+const inlineCodeBgPadding = 4
+globalStyle(`${blogClass} :not(pre) > code::before`, {
+  content: "''",
+  position: "absolute",
+  top: -inlineCodeBgPadding,
+  left: -inlineCodeBgPadding,
+  bottom: -inlineCodeBgPadding,
+  right: -inlineCodeBgPadding,
+  backgroundColor: `color-mix(in srgb, ${vars.color.border}, transparent 85%)`,
+})
+
 export const tagsClass = style({
   display: "flex",
   gap: vars.space.m,
