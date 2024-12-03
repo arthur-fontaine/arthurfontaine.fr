@@ -12,23 +12,36 @@ translationKeys:
   fr: mon-advent-of-code-2024
 ---
 
-# Advent of Code 2024 : mon expérience
+# Advent of Code 2024 : à la découverte des philosophies du code
 
-Advent of Code est un événement annuel de programmation qui se déroule en
-décembre. Chaque jour, du 1er au 25 décembre, un nouveau problème est publié
-sur le site Advent of Code. Les participants doivent résoudre ces problèmes en
-utilisant leurs compétences en programmation pour obtenir des réponses
-correctes.
+Advent of Code est un événement de programmation annuel qui remplace les
+traditionnels chocolats du calendrier de l'Avent par des problèmes de code. Du
+1er au 25 décembre, chaque jour, un nouveau problème de programmation est
+publié, conçu comme un petit puzzle algorithmique à résoudre. Ces défis sont
+indépendants des langages : ils peuvent être résolus avec n'importe quel
+langage de programmation, ce qui en fait un terrain de jeu idéal pour
+l'apprentissage et l'exploration.
 
-En 2023, j'avais décidé de profiter de l'événement pour apprendre Go, un
-langage de programmation avec une popularité croissante. Cette année, je veux
-aller plus loin : explorer plusieurs langages pour élargir ma compréhension des
-différentes approches de programmation, comprendre leurs forces et leurs
-paradigmes spécifiques, pour éviter de me cantonner à mon langage de confort,
-TypeScript, et enrichir ma façon de coder, en important de nouvelles techniques
-dans mes projets habituels.
+En 2023, j'avais décidé de profiter de l'événement pour apprendre Go. Cette
+année, je me lance un défi plus ambitieux : résoudre ces problèmes dans une
+variété de langages de programmation. Mon parcours sera semé d'embûches. Entre
+mes journées chargées et la diversité des paradigmes, je m'attends à rencontrer
+des difficultés. Certains paradigmes, comme la programmation fonctionnelle,
+demanderont un temps d'adaptation significatif. D'autres langages, comme Rust
+ou Zig, des langages bas niveau, impliqueront des concepts de gestion mémoire
+plus complexes que mes habitudes. Le risque principal sera de manquer de temps.
 
-Cet article racontera au jour le jour mon expérience de l'Advent of Code 2024.
+Pourtant, c'est précisément ce défi qui m'attire. La programmation est un
+territoire vaste et infini, parsemé de paradigmes, de syntaxes et de
+philosophies différentes, tous venant de réflexions d'individus liées à leurs
+expériences et à leurs besoins. C'est cette richesse qui m'anime depuis mes
+débuts en programmation : comprendre les différentes manières de penser et
+d'aborder un problème, pour devenir un meilleur développeur.
+
+Mon objectif n'est pas de devenir un expert de chaque langage, mais de
+comprendre leurs philosophies, leurs forces et leurs limitations. C'est une
+exploration, une quête pour trouver les différentes façons de conceptualiser
+un problème et de le résoudre.
 
 ## Jour -1 : La Préparation
 
