@@ -1,0 +1,45 @@
+---
+interface Props {
+  class?: string;
+  "class:child"?: string;
+  "class:overlay"?: string;
+  as?: string;
+  "as:children"?: string;
+}
+
+const Component = Astro.props.as || "div";
+const ChildrenComponent = Astro.props["as:children"] || "div";
+---
+
+<Component class={`cursor-alias ${Astro.props.class}`} id="show-on-hover">
+  <ChildrenComponent
+    class={`underline decoration-dotted ${Astro.props["class:child"]}`}
+  >
+    <!-- slot should be on the same line ChildrenComponent to avoid extra space -->
+    <slot /></ChildrenComponent
+  >
+  <ChildrenComponent
+    class={`absolute top-0 left-0 bg-opacity-50 opacity-0 group-hover:opacity-100 select-none slot-overlay pointer-events-none h-fit w-fit ${Astro.props["class:overlay"]}`}
+  >
+    <slot name="overlay" slot="overlay" />
+  </ChildrenComponent>
+</Component>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("#show-on-hover").forEach((el) => {
+      const overlay = el.querySelector(".slot-overlay") as HTMLElement | null;
+      if (!overlay) return;
+      el.addEventListener("mousemove", (e_) => {
+        const e = e_ as MouseEvent;
+        overlay.style.transform = `translate(${e.layerX}px, ${e.layerY}px)`;
+      });
+      el.addEventListener("mouseenter", () => {
+        overlay.style.opacity = "1";
+      });
+      el.addEventListener("mouseleave", () => {
+        overlay.style.opacity = "0";
+      });
+    });
+  });
+</script>

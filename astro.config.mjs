@@ -1,14 +1,17 @@
-import { defineConfig } from 'astro/config';
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import vercel from "@astrojs/vercel/static";
+// @ts-check
+import { defineConfig } from "astro/config";
+
+import vercel from "@astrojs/vercel";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [vanillaExtractPlugin({})]
-  },
-  output: "static",
-  adapter: vercel({
-    analytics: true,
-  })
+	prefetch: true,
+	vite: {
+		plugins: [tailwindcss()],
+	},
+	output: 'static',
+	adapter: vercel({
+		webAnalytics: { enabled: true },
+	}),
 });
