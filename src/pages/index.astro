@@ -1,6 +1,131 @@
 ---
+import { Image } from "astro:assets";
+import babyMeImage from "../assets/baby-me.jpg";
+import Project from "../components/Project.astro";
+import ShowOnHover from "../components/ShowOnHover.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
+	<header>
+		<h1 class="mb-0">Arthur Fontaine</h1>
+		<h2 class="text-[var(--prose-body)] mt-4">Développeur Full Stack</h2>
+
+		<ul
+			class="flex space-x-4 mt-8 list-none p-0 [&>li]:p-0 [&>li>a]:font-light flex-wrap"
+		>
+			<li>
+				<a href="https://x.com/voithure">Twitter</a>
+			</li>
+			<li>
+				<a href="https://github.com/arthur-fontaine">GitHub</a>
+			</li>
+			<li>
+				<a href="https://linkedin.com/in/arthur-fontaine">LinkedIn</a>
+			</li>
+		</ul>
+	</header>
+
+	<section>
+		<h2>Mon Histoire</h2>
+		<p>
+			Depuis mon plus jeune âge, l’informatique a toujours été une passion. Ma
+			première photo en train de taper sur un ordinateur ?
+			<ShowOnHover
+				class="hidden supports-hover:inline"
+				as="span"
+				as:children="span"
+			>
+				<!-- This text should be on the same line than the overlay to avoid extra space -->
+				J’avais à peine 1 an.<span slot="overlay"
+					><Image
+						src={babyMeImage}
+						alt="Moi à 1 an"
+						class="rounded-lg !m-0 min-w-64 absolute top-2 left-2"
+					/>
+				<!-- This span should be on the same line than the overlay to avoid extra space -->
+				</span></ShowOnHover
+			><span class="supports-hover:hidden">J’avais à peine 1 an.</span>
+			Cette fascination pour la technologie et l’envie d’inventer des choses m’ont
+			naturellement conduit vers le développement informatique, où je peux allier
+			créativité et logique.
+		</p>
+
+		<a href="/story" class="font-light"> → En Découvrir Plus sur Moi </a>
+
+		<h2>Pourquoi Travailler Avec Moi ?</h2>
+		<p>
+			Mon parcours, alliant passion, expertise technique et expérience
+			professionnelle, fait de moi un développeur full stack polyvalent et
+			fiable. Que vous ayez besoin d’un projet rapide et efficace ou d’une
+			architecture robuste et scalable, je suis là pour vous accompagner. Ma
+			capacité à m’adapter à différentes technologies et environnements me
+			permet de répondre à des besoins variés, tout en garantissant des
+			solutions de qualité. Découvrez mes réalisations et discutons de votre
+			projet !
+		</p>
+
+		<h3>Exemples de ce je peux réaliser</h3>
+		<ul class="text-wrap">
+			<li>
+				Création de votre boutique en ligne (Shopify, WooCommerce, Prestashop,
+				etc.)
+			</li>
+			<li>Création de votre site vitrine (WordPress, Wix, etc.)</li>
+			<li>Automatisation de vos tâches répétitives</li>
+			<li>
+				Création de votre application mobile (React Native, Flutter, etc.)
+			</li>
+			<li>Création de votre application web (React, Vue, Angular, etc.)</li>
+			<li>Création de votre API (Node.js, Express, Golang, GraphQL, etc.)</li>
+			<li>Pleins d'autres choses !</li>
+		</ul>
+
+		<a href="/contact" class="btn mt-4">Me Contacter</a>
+	</section>
+
+	<section>
+		<h2>Mes Réalisations</h2>
+
+		<div class="flex flex-col space-y-4">
+			<Project
+				title="Agrume"
+				description="Une bibliothèque TypeScript pour construire des API RPC directement dans votre frontend et de manière type-safe."
+				link="https://github.com/arthur-fontaine/agrume"
+			/>
+
+			<Project
+				title="KCorp API"
+				description="Un calendrier ICS des matches pour l'équipe e-sportive Karmine Corp."
+				link="https://calendar.karmine.plus"
+			/>
+
+			<Project
+				title="Nanomachine"
+				experimental
+				description="Un builder de state machine type-safe basé sur Nanostores et inspiré par XState."
+				link="https://gist.github.com/arthur-fontaine/608a6e04d4e600779be2a3b8f89bd11c"
+			/>
+
+			<Project
+				title="Diabolo"
+				description="Une bibliothèque TypeScript pour gérer l'injection de dépendances dans vos applications de manière simple et type-safe."
+				link="https://github.com/arthur-fontaine/diabolo"
+			/>
+
+			<Project
+				title="Yieldable JSX"
+				experimental
+				description="Un runtime JSX qui fonctionne avec les générateurs."
+				link="https://github.com/arthur-fontaine/yieldable-jsx"
+			/>
+
+			<Project
+				title="JSXon"
+				experimental
+				description="Un runtime JSX côté serveur qui renvoie du JSON et le rend de manière native côté client (avec Kotlin, Swift, en web, ou n'importe quoi)."
+				link="https://github.com/arthur-fontaine/jsxon"
+			/>
+		</div>
+	</section>
 </Layout>

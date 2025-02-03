@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-display: "Input Mono", monospace;
+  --font-title: "Director", sans-serif;
+
+  --breakpoint-xs: 30rem;
+}
+
+@theme inline {
+  --color-prose-text: var(--tw-prose-body, color-mix(in srgb, theme(colors.white), transparent 50%));
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: -.1em;
+}
+
+@utility font-title {
+  font-family: var(--font-title);
+  font-weight: 500;
+  letter-spacing: -.06em;
+
+  &:is(h1) {
+    font-weight: 800;
+  }
+}
+
+@custom-variant supports-hover {
+  @media (any-hover: hover) {
+    @slot;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply font-title;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: theme(spacing.2) theme(spacing.4);
+    border-radius: theme(radius.md);
+    background-color: theme(colors.black);
+    color: theme(colors.white)!important;
+
+    @variant dark {
+      background-color: theme(colors.white);
+      color: theme(colors.black)!important;
+    }
+  }
+
+  .project {
+    &:is(article) {
+      padding: theme(spacing.4);
+      border-radius: theme(radius.xl);
+      border: 1px solid var(--tw-prose-body, color-mix(in srgb, theme(colors.proseText), transparent 50%));
+      display: flex;
+      flex-direction: column;
+      gap: theme(spacing.1);
+
+      & > * {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+      
+      & > p {
+        text-wrap: auto;
+      }
+    }
+  }
+}
+
+@layer base {
+  br {
+    display: block;
+    content: "";
+    margin-top: .5em;
+  }
+}

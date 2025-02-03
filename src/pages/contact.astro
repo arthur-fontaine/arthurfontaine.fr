@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const mail = "me@arthurfontaine.fr";
+---
+
+<Layout>
+  <div class="!my-auto md:!my-0">
+    <h1>Me Contacter</h1>
+
+    <p>
+      Vous pouvez me contacter par mail à{" "}
+      <a href={`mailto:${mail}`} class="underline font-light">
+        {mail}
+      </a> ou directement via le formulaire ci-dessous.
+    </p>
+
+    <form
+      onsubmit="window.open(`mailto:${mail.value}?subject=${message.value}&body=${subject.value}`)"
+      class="grid xs:grid-cols-[min-content_1fr] gap-4 mt-8"
+    >
+      <label for="subject">Objet</label>
+      <input type="text" id="subject" name="subject" required class="flex-1 border py-1 px-2 rounded-md focus:outline-prose-text" />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required class="flex-1 border py-1 px-2 rounded-md h-36 focus:outline-prose-text"></textarea>
+
+      <input hidden id="mail" name="mail" value={mail} />
+
+      <div />
+      <button type="submit" class="btn cursor-pointer mt-4">Envoyer</button>
+    </form>
+  </div>
+</Layout>

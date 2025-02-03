@@ -1,3 +1,7 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -7,16 +11,9 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Arthur Fontaine</title>
 	</head>
-	<body>
+	<body
+		class="prose dark:prose-invert dark:bg-gray-900 container py-12 md:py-32 prose-headings:font-title font-display min-h-dvh flex flex-col"
+	>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

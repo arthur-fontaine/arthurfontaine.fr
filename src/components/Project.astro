@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  experimental?: boolean;
+}
+---
+
+<article class="project">
+  <h3>
+    <a href={Astro.props.link} target="_blank">{Astro.props.title}</a>
+    {
+      Astro.props.experimental && (
+        <span class="italic text-sm">(expérimental)</span>
+      )
+    }
+  </h3>
+  <p>
+    {Astro.props.description}
+  </p>
+</article>
