@@ -2,8 +2,14 @@
 
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: "Director";
+  src: url("/fonts/Director-Variable.woff2") format("woff2");
+  font-weight: 500 800;
+}
+
 @theme {
-  --font-display: "Input Mono", monospace;
+  --font-display: "Input Mono", "Input Mono Lt", monospace;
   --font-title: "Director", sans-serif;
 
   --breakpoint-xs: 30rem;
