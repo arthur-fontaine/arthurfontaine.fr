@@ -6,19 +6,19 @@ const mail = "me@arthurfontaine.fr";
 
 <Layout>
   <div class="!my-auto md:!my-0">
-    <h1>Me Contacter</h1>
+    <h1>Contact Me</h1>
 
     <p>
-      Vous pouvez me contacter par mail à{" "}
-      <a href={`mailto:${mail}`} class="underline font-light"> {mail}</a> ou directement
-      via le formulaire ci-dessous.
+      You can email me at{" "}
+      <a href={`mailto:${mail}`} class="underline font-light"> {mail}</a> or use the
+      form below.
     </p>
 
     <form
       onsubmit="window.open(`mailto:${mail.value}?subject=${message.value}&body=${subject.value}`)"
       class="grid xs:grid-cols-[min-content_1fr] gap-4 mt-8"
     >
-      <label for="subject">Objet</label>
+      <label for="subject">Subject</label>
       <input
         type="text"
         id="subject"
@@ -38,7 +38,7 @@ const mail = "me@arthurfontaine.fr";
       <input hidden id="mail" name="mail" value={mail} />
 
       <div></div>
-      <button type="submit" class="btn cursor-pointer mt-4">Envoyer</button>
+      <button type="submit" class="btn cursor-pointer mt-4">Send</button>
     </form>
   </div>
 </Layout>
