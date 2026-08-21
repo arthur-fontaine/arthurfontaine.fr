@@ -94,6 +94,7 @@
 
   .code-block {
     position: relative;
+    min-width: 0;
     /* Article content sits in a flex column, so margins never collapse.
        These are the whole gap, not half of it. */
     margin-block: 0.25rem;
@@ -216,6 +217,18 @@
 }
 
 @layer base {
+  body > * {
+    min-width: 0;
+  }
+
+  /* A table wide enough to overflow scrolls inside its own box instead of
+     stretching the page. display: block is what lets it shrink. */
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
   br {
     display: block;
     content: "";

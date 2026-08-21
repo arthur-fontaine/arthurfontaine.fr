@@ -59,8 +59,9 @@ export function rehypeCodeBlocks() {
 		const visit = (node) => {
 			if (!node.children) return;
 			node.children = node.children.map((child) => {
+				if (child.type !== "element") return child;
+
 				if (
-					child.type === "element" &&
 					child.tagName === "pre" &&
 					child.children?.some(
 						(c) => c.type === "element" && c.tagName === "code",
@@ -68,6 +69,7 @@ export function rehypeCodeBlocks() {
 				) {
 					return wrap(child);
 				}
+
 				visit(child);
 				return child;
 			});
