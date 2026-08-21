@@ -40,7 +40,9 @@ One more wrinkle: the clone carries `node_modules/.pnpm-workspace-state-v1.json`
 
 ## The recipe you can use today
 
-pnpm can run all of this from a [pnpmfile](https://pnpm.io/pnpmfile). The important detail is which hook: `updateConfig` runs while pnpm is still loading its config, which is before the install decides whether `node_modules` is up to date. A tree seeded any later is ignored by that decision.
+My first attempt was the `pnpm:devPreinstall` lifecycle script, which sounded like the obvious place to seed the tree. It does not work, and the reason is structural: pnpm decides whether `node_modules` is up to date before it runs that script, so the cloned tree arrives too late to be recognized and the install links everything on top of it, slower than doing nothing. The same script run by hand before pnpm was accepted immediately, so the seeding is fine; only the timing is wrong.
+
+The hook that is early enough lives in a [pnpmfile](https://pnpm.io/pnpmfile): `updateConfig` runs while pnpm is still loading its config, which is before the install makes that up-to-date decision. A tree seeded any later is ignored by it.
 
 `.pnpmfile.cjs` at the workspace root:
 
@@ -160,7 +162,7 @@ log "cloned node_modules from $best in $(( $(date +%s) - start ))s"
 
 That is the whole setup. Create a new worktree, run `pnpm install`, and if a sibling qualifies, the tree is cloned and the install has nothing left to do. It needs pnpm 10.8.0 or later (the version that added the `updateConfig` hook), macOS on APFS (for `clonefile` and `stat -f`), git, jq and python3. When no donor qualifies, the script exits and the install proceeds exactly as before, so there is no failure mode to think about.
 
-On the same monorepo, benchmarked on a machine under normal load, a plain fresh-worktree install took 43 to 45 seconds and the hook took 20 to 26. I also benchmarked this shell version against my native prototype below, and they are indistinguishable, within a second of each other. The 44-to-13 numbers come from a quiet machine; roughly halving a fresh worktree install holds in both conditions.
+On the same monorepo this is the 44 seconds to 13.4 from earlier. I also benchmarked this shell version against the native prototype below, and the two are within a second of each other, so nothing is lost by running it as a hook.
 
 ## Upstream status
 

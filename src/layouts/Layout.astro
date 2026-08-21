@@ -17,5 +17,46 @@ import "../styles/global.css";
 		class="prose dark:prose-invert dark:bg-[oklch(0.205_0.003_350)] container py-12 md:py-32 prose-headings:font-title font-display min-h-dvh flex flex-col"
 	>
 		<slot />
+
+		<script>
+			document.addEventListener("click", (event) => {
+				const expand = (event.target as HTMLElement)?.closest?.(
+					"[data-expand]",
+				) as HTMLButtonElement | null;
+				if (!expand) return;
+
+				const block = expand.closest(".code-block") as HTMLElement | null;
+				if (!block) return;
+
+				const clamped = block.dataset.clamped !== "false";
+				block.dataset.clamped = clamped ? "false" : "true";
+				expand.setAttribute("aria-expanded", String(clamped));
+				expand.textContent = clamped
+					? "Show less"
+					: `Show all ${block.dataset.lines} lines`;
+			});
+
+			document.addEventListener("click", async (event) => {
+				const button = (event.target as HTMLElement)?.closest?.(
+					"[data-copy]",
+				) as HTMLButtonElement | null;
+				if (!button) return;
+
+				const code = button
+					.closest(".code-block")
+					?.querySelector("pre")?.textContent;
+				if (!code) return;
+
+				try {
+					await navigator.clipboard.writeText(code);
+					button.textContent = "Copied";
+				} catch {
+					button.textContent = "Press Cmd C";
+				}
+				setTimeout(() => {
+					button.textContent = "Copy";
+				}, 1500);
+			});
+		</script>
 	</body>
 </html>

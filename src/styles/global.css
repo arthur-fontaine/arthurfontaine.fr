@@ -8,6 +8,26 @@
   font-weight: 500 800;
 }
 
+:root {
+  --code-bg: oklch(0.972 0.002 350);
+  --code-border: oklch(0.9 0.003 350);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --code-bg: oklch(0.25 0.004 350);
+    --code-border: oklch(0.33 0.004 350);
+  }
+
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
 @theme {
   --font-display: "Input Mono", "Input Mono Lt", monospace;
   --font-title: "Director", sans-serif;
@@ -70,6 +90,108 @@
     background-size: 100% 1px;
     background-position: 0 100%;
     padding-bottom: .14em;
+  }
+
+  .code-block {
+    position: relative;
+    /* Article content sits in a flex column, so margins never collapse.
+       These are the whole gap, not half of it. */
+    margin-block: 0.25rem;
+
+    & pre {
+      margin: 0 !important;
+      border-radius: 0 !important;
+      padding: 1rem 1.15rem;
+      overflow-x: auto;
+      background-color: var(--code-bg) !important;
+      border: 1px solid var(--code-border);
+      font-size: 0.85em;
+      line-height: 1.6;
+    }
+
+    & code {
+      background: none;
+      font-weight: 400;
+      letter-spacing: 0;
+      counter-reset: line;
+    }
+
+    & code .line::before {
+      counter-increment: line;
+      content: counter(line);
+      display: inline-block;
+      min-width: 2ch;
+      margin-right: 1.5ch;
+      text-align: right;
+      opacity: 0.35;
+      user-select: none;
+    }
+  }
+
+  p:has(+ .code-block) {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .code-copy {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    z-index: 1;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    line-height: 1.4;
+    cursor: pointer;
+    color: inherit;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+
+    &:hover {
+      background-color: color-mix(in srgb, currentColor 8%, var(--code-bg));
+    }
+  }
+
+  .code-block[data-clamped="true"] {
+    & pre {
+      max-height: 21em;
+      overflow: hidden;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 1px;
+      right: 1px;
+      bottom: calc(2.1rem + 1px);
+      height: 5em;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, var(--code-bg));
+    }
+  }
+
+  .code-expand {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1.15rem;
+    font-size: 0.75rem;
+    text-align: left;
+    cursor: pointer;
+    color: color-mix(in srgb, currentColor 70%, transparent);
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-top: 0;
+
+    &:hover {
+      color: inherit;
+      background-color: color-mix(in srgb, currentColor 6%, var(--code-bg));
+    }
+
+    &::before {
+      content: "▾ ";
+    }
+
+    [data-clamped="false"] > &::before {
+      content: "▴ ";
+    }
   }
 
   .card {
