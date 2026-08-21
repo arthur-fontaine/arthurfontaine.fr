@@ -8,37 +8,23 @@ const mail = "me@arthurfontaine.fr";
   <div class="!my-auto md:!my-0">
     <h1>Contact Me</h1>
 
-    <p>
-      You can email me at{" "}
-      <a href={`mailto:${mail}`} class="underline font-light"> {mail}</a> or use the
-      form below.
+    <p>Pick whichever is easiest for you.</p>
+
+    <ul class="list-none p-0 space-y-3 [&>li]:p-0 [&>li]:font-light">
+      <li>
+        An email at <a href={`mailto:${mail}`}>{mail}</a>
+      </li>
+      <li>
+        A DM on <a href="https://x.com/voithure">Twitter</a>
+      </li>
+      <li>
+        A DM on <a href="https://discord.com/users/voithure">Discord</a>
+      </li>
+    </ul>
+
+    <p class="mt-10">
+      Anything is fine. A question, an idea, or just hello. I always like
+      hearing from people.
     </p>
-
-    <form
-      onsubmit="window.open(`mailto:${mail.value}?subject=${message.value}&body=${subject.value}`)"
-      class="grid xs:grid-cols-[min-content_1fr] gap-4 mt-8"
-    >
-      <label for="subject">Subject</label>
-      <input
-        type="text"
-        id="subject"
-        name="subject"
-        required
-        class="flex-1 border py-1 px-2 rounded-md focus:outline-prose-text"
-      />
-
-      <label for="message">Message</label>
-      <textarea
-        id="message"
-        name="message"
-        required
-        class="flex-1 border py-1 px-2 rounded-md h-36 focus:outline-prose-text"
-      ></textarea>
-
-      <input hidden id="mail" name="mail" value={mail} />
-
-      <div></div>
-      <button type="submit" class="btn cursor-pointer mt-4">Send</button>
-    </form>
   </div>
 </Layout>
