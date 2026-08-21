@@ -1,7 +1,7 @@
 ---
-title: "Yieldable JSX"
-description: "An experimental JSX runtime where components are generator functions and elements are yielded instead of returned."
-pubDate: 2026-08-21
+title: "What if components were generators?"
+description: "Yieldable JSX, a runtime where a component yields its elements instead of returning a tree, so rendering becomes iteration."
+pubDate: 2024-05-02
 tags: ["typescript", "jsx", "experiment"]
 ---
 

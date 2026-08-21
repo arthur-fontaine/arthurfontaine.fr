@@ -17,20 +17,38 @@ const date = article.data.pubDate.toISOString().slice(0, 10);
 ---
 
 <Layout>
-  <a href="/articles" class="font-light block mb-8" data-astro-prefetch
+  <a id="back" href="/articles" class="font-light block mb-8" data-astro-prefetch
     >← Articles</a
   >
 
-  <h1>{article.data.title}</h1>
-
-  <p class="!text-sm font-light">
-    <time datetime={date}>{date}</time>
-    {
-      article.data.tags.length > 0 && (
-        <span class="ml-4">{article.data.tags.join(", ")}</span>
-      )
+  <script>
+    // The home page lists articles too, so send readers back where they came from.
+    const back = document.getElementById("back") as HTMLAnchorElement | null;
+    if (back && document.referrer) {
+      try {
+        const from = new URL(document.referrer);
+        if (from.origin === location.origin && from.pathname === "/") {
+          back.href = "/";
+          back.textContent = "← Home";
+        }
+      } catch {}
     }
-  </p>
+  </script>
+
+  <div
+    class="flex flex-wrap items-baseline gap-2 text-xs font-light opacity-60"
+  >
+    <time datetime={date} class="leading-none py-[0.1em] border border-transparent tracking-[-0.04em]">{date}</time>
+    {
+      article.data.tags.map((tag) => (
+        <span class="border rounded-full pl-2 pr-[calc(0.5rem+0.1em)] py-[0.1em] leading-none">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+
+  <h1 class="!mt-4">{article.data.title}</h1>
 
   <Content />
 </Layout>

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Article from "../../components/Article.astro";
+import ArticleRow from "../../components/ArticleRow.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const articles = (await getCollection("articles")).sort(
@@ -9,65 +9,97 @@ const articles = (await getCollection("articles")).sort(
 
 const tags = [...new Set(articles.flatMap((a) => a.data.tags))].sort();
 
+const years = [
+  ...new Set(articles.map((a) => a.data.pubDate.getUTCFullYear())),
+].sort((a, b) => b - a);
+
 const index = articles.map((a) => ({
   id: `/articles/${a.id}`,
   title: a.data.title,
   description: a.data.description,
   body: a.body ?? "",
-  tags: a.data.tags,
 }));
 ---
 
 <Layout>
   <a href="/" class="font-light block mb-8" data-astro-prefetch>← Home</a>
 
-  <h1>Articles</h1>
+  <h1 class="!mb-2">My Articles</h1>
 
-  <div class="flex flex-col gap-4 mt-8">
+  <p class="font-light !mt-0">
+    Notes on the things I build to find out how they work.
+  </p>
+
+  <div class="mt-10 flex flex-col gap-5">
     <input
       id="search"
       type="search"
       placeholder="Search"
       autocomplete="off"
-      class="border py-1 px-2 rounded-md focus:outline-prose-text font-light"
+      class="w-full bg-transparent border-0 border-b rounded-none py-2 font-light placeholder:opacity-50 focus:outline-none focus-visible:border-b-2"
     />
 
-    <div class="flex flex-wrap gap-x-4 gap-y-2 items-center">
-      <select
-        id="sort"
-        class="border py-1 px-2 rounded-md focus:outline-prose-text font-light"
-      >
-        <option value="newest">Newest first</option>
-        <option value="oldest">Oldest first</option>
-      </select>
-
+    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-3 text-xs">
       {
         tags.map((tag) => (
-          <label class="font-light">
-            <input type="checkbox" name="tag" value={tag} /> {tag}
-          </label>
+          <button
+            type="button"
+            data-tag={tag}
+            aria-pressed="false"
+            class="border rounded-full pl-3 pr-[calc(0.75rem+0.1em)] py-1 leading-none font-light opacity-60 cursor-pointer aria-pressed:opacity-100 aria-pressed:bg-black aria-pressed:text-white dark:aria-pressed:bg-white dark:aria-pressed:text-black"
+          >
+            {tag}
+          </button>
         ))
       }
+
+      <button
+        type="button"
+        id="sort"
+        data-order="newest"
+        class="ml-auto py-1 leading-none font-light opacity-60 hover:opacity-100 cursor-pointer"
+        >Newest first ↓</button
+      >
     </div>
+
+    <p id="count" class="!my-0 text-xs font-light opacity-60">
+      {articles.length} articles
+    </p>
   </div>
 
-  <div id="list" class="flex flex-col space-y-4 mt-8">
+  <div id="list" class="mt-4">
     {
-      articles.map((article) => (
-        <Article
-          title={article.data.title}
-          description={article.data.description}
-          href={`/articles/${article.id}`}
-          pubDate={article.data.pubDate}
-          tags={article.data.tags}
-        />
+      years.map((year) => (
+        <section data-year={year} class="border-t mt-10 pt-6">
+          <h2 class="!m-0 !text-2xl opacity-30">{year}</h2>
+
+          <div class="mt-2">
+            {articles
+              .filter((a) => a.data.pubDate.getUTCFullYear() === year)
+              .map((article) => (
+                <ArticleRow
+                  title={article.data.title}
+                  description={article.data.description}
+                  href={`/articles/${article.id}`}
+                  pubDate={article.data.pubDate}
+                  tags={article.data.tags}
+                />
+              ))}
+          </div>
+        </section>
       ))
     }
   </div>
 
-  <p id="empty" class="hidden font-light">Nothing matches that search.</p>
+  <p id="empty" class="hidden font-light mt-10">
+    Nothing matches. Clear the search or the tags to see everything.
+  </p>
 
-  <script type="application/json" id="articles-index" set:html={JSON.stringify(index)} />
+  <script
+    type="application/json"
+    id="articles-index"
+    set:html={JSON.stringify(index)}
+  />
 
   <script>
     import { create, insertMultiple, search } from "@orama/orama";
@@ -78,7 +110,6 @@ const index = articles.map((a) => ({
       title: string;
       description: string;
       body: string;
-      tags: string[];
     }[];
 
     const db = create({
@@ -93,9 +124,15 @@ const index = articles.map((a) => ({
 
     const list = document.getElementById("list") as HTMLElement;
     const empty = document.getElementById("empty") as HTMLElement;
+    const count = document.getElementById("count") as HTMLElement;
     const input = document.getElementById("search") as HTMLInputElement;
-    const sort = document.getElementById("sort") as HTMLSelectElement;
-    const cards = [...list.querySelectorAll<HTMLElement>("[data-article]")];
+    const sort = document.getElementById("sort") as HTMLButtonElement;
+    const tagButtons = [
+      ...document.querySelectorAll<HTMLButtonElement>("[data-tag]"),
+    ];
+    const groups = [...list.querySelectorAll<HTMLElement>("[data-year]")];
+    const rows = [...list.querySelectorAll<HTMLElement>("[data-article]")];
+    const total = rows.length;
 
     async function matchingIds(term: string) {
       if (term.trim() === "") return null;
@@ -105,37 +142,71 @@ const index = articles.map((a) => ({
 
     async function apply() {
       const ids = await matchingIds(input.value);
-      const checked = [
-        ...document.querySelectorAll<HTMLInputElement>(
-          'input[name="tag"]:checked',
-        ),
-      ].map((el) => el.value);
+      const active = tagButtons
+        .filter((button) => button.getAttribute("aria-pressed") === "true")
+        .map((button) => button.dataset.tag ?? "");
 
       let shown = 0;
-      for (const card of cards) {
-        const tags = (card.dataset.tags ?? "").split(" ").filter(Boolean);
-        const okTags = checked.every((tag) => tags.includes(tag));
-        const okTerm = ids === null || ids.has(card.dataset.id ?? "");
-        const visible = okTags && okTerm;
-        card.hidden = !visible;
+      for (const row of rows) {
+        const tags = (row.dataset.tags ?? "").split(" ").filter(Boolean);
+        const visible =
+          active.every((tag) => tags.includes(tag)) &&
+          (ids === null || ids.has(row.dataset.id ?? ""));
+        row.hidden = !visible;
         if (visible) shown++;
       }
 
-      empty.classList.toggle("hidden", shown > 0);
+      for (const group of groups) {
+        const any = [...group.querySelectorAll<HTMLElement>("[data-article]")]
+          .some((row) => !row.hidden);
+        group.hidden = !any;
+      }
 
-      const order = sort.value === "oldest" ? 1 : -1;
-      const sorted = [...cards].sort(
-        (a, b) =>
-          order *
-          (Date.parse(b.dataset.date ?? "") - Date.parse(a.dataset.date ?? "")),
-      );
-      for (const card of sorted) list.appendChild(card);
+      count.textContent =
+        shown === total
+          ? `${total} articles`
+          : `${shown} of ${total} articles`;
+      empty.classList.toggle("hidden", shown > 0);
+    }
+
+    function reorder() {
+      const oldest = sort.dataset.order === "oldest";
+      sort.textContent = oldest ? "Oldest first ↑" : "Newest first ↓";
+
+      const sortedGroups = [...groups].sort((a, b) => {
+        const ya = Number(a.dataset.year);
+        const yb = Number(b.dataset.year);
+        return oldest ? ya - yb : yb - ya;
+      });
+      for (const group of sortedGroups) list.appendChild(group);
+
+      for (const group of groups) {
+        const holder = group.lastElementChild as HTMLElement;
+        const inner = [
+          ...holder.querySelectorAll<HTMLElement>("[data-article]"),
+        ].sort((a, b) => {
+          const da = Date.parse(a.dataset.date ?? "");
+          const db_ = Date.parse(b.dataset.date ?? "");
+          return oldest ? da - db_ : db_ - da;
+        });
+        for (const row of inner) holder.appendChild(row);
+      }
     }
 
     input.addEventListener("input", apply);
-    sort.addEventListener("change", apply);
-    for (const box of document.querySelectorAll('input[name="tag"]')) {
-      box.addEventListener("change", apply);
+
+    for (const button of tagButtons) {
+      button.addEventListener("click", () => {
+        const pressed = button.getAttribute("aria-pressed") === "true";
+        button.setAttribute("aria-pressed", pressed ? "false" : "true");
+        apply();
+      });
     }
+
+    sort.addEventListener("click", () => {
+      sort.dataset.order =
+        sort.dataset.order === "oldest" ? "newest" : "oldest";
+      reorder();
+    });
   </script>
 </Layout>

@@ -1,7 +1,7 @@
 ---
-title: "JSXon"
-description: "An experimental server-side JSX runtime that returns JSON, so any client can render the UI with native components."
-pubDate: 2026-08-21
+title: "Write your UI once, render it natively"
+description: "JSXon, a server that keeps JSX as data and serves it as JSON, so a Kotlin, Swift or web client can draw it with native components."
+pubDate: 2024-08-12
 tags: ["typescript", "jsx", "experiment"]
 ---
 

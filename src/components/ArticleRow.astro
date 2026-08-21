@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  pubDate: Date;
+  tags: string[];
+}
+
+const { title, description, href, pubDate, tags } = Astro.props;
+
+const date = pubDate.toISOString().slice(0, 10);
+---
+
+<article
+  class="py-6 border-b last:border-b-0"
+  data-article
+  data-id={href}
+  data-date={date}
+  data-tags={tags.join(" ")}
+>
+  <div class="flex flex-wrap items-baseline gap-2 text-xs font-light opacity-60">
+    <time
+      datetime={date}
+      class="leading-none py-[0.1em] border border-transparent tracking-[-0.04em]"
+      >{date}</time
+    >
+    {
+      tags.map((tag) => (
+        <span class="border rounded-full pl-2 pr-[calc(0.5rem+0.1em)] py-[0.1em] leading-none">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+
+  <div class="relative">
+    <h3 class="!mt-2 !mb-1 !text-xl">
+      <a href={href} class="after:absolute after:inset-0" data-astro-prefetch
+        >{title}</a
+      >
+    </h3>
+
+    <p class="!mt-0 !mb-0 font-light">{description}</p>
+  </div>
+</article>

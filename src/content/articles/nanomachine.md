@@ -1,7 +1,7 @@
 ---
-title: "Nanomachine"
-description: "An experiment in building a type-safe state machine on top of Nanostores, inspired by XState."
-pubDate: 2026-08-21
+title: "A state machine that infers its own types"
+description: "Nanomachine, my experiment in building a state machine on Nanostores where the types follow the builder chain, no codegen."
+pubDate: 2025-01-08
 tags: ["typescript", "state-machines", "nanostores", "experiment"]
 ---
 

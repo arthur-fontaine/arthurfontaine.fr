@@ -13,18 +13,30 @@ const date = pubDate.toISOString().slice(0, 10);
 ---
 
 <article
-  class="card"
+  class="py-6"
   data-article
   data-id={href}
   data-date={date}
   data-tags={tags.join(" ")}
 >
-  <h3>
-    <a href={href} data-astro-prefetch>{title}</a>
-  </h3>
-  <p class="!text-sm font-light">
-    <time datetime={date}>{date}</time>
-    {tags.length > 0 && <span class="ml-4">{tags.join(", ")}</span>}
-  </p>
-  <p>{description}</p>
+  <div class="flex flex-wrap items-baseline gap-2 !mb-1 text-xs font-light opacity-60">
+    <time datetime={date} class="leading-none py-[0.1em] border border-transparent tracking-[-0.04em]">{date}</time>
+    {
+      tags.map((tag) => (
+        <span class="border rounded-full pl-2 pr-[calc(0.5rem+0.1em)] py-[0.1em] leading-none">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+
+  <div class="relative">
+    <h3 class="!m-0">
+      <a href={href} class="after:absolute after:inset-0" data-astro-prefetch
+        >{title}</a
+      >
+    </h3>
+
+    <p class="!mt-1 !mb-0">{description}</p>
+  </div>
 </article>

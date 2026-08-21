@@ -94,9 +94,9 @@ const articles = (await getCollection("articles"))
 	</section>
 
 	<section>
-		<h2>Articles</h2>
+		<h2>My Last Articles</h2>
 
-		<div class="flex flex-col space-y-4">
+		<div class="flex flex-col mt-8 divide-y divide-current/20">
 			{
 				articles.map((article) => (
 					<Article
@@ -110,7 +110,7 @@ const articles = (await getCollection("articles"))
 			}
 		</div>
 
-		<a href="/articles" class="font-light block mt-6" data-astro-prefetch>
+		<a href="/articles" class="font-light block mt-10" data-astro-prefetch>
 			→ Read All Articles</a
 		>
 	</section>
