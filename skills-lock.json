@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "skills": {
+    "blog": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog/SKILL.md",
+      "computedHash": "98de009ecfcdb58fd1d62eae4ec6ebc13b6ff9eebb202ef8ca7ea20e37ffd8d6"
+    },
+    "blog-analyze": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-analyze/SKILL.md",
+      "computedHash": "01eb92ff17b98e7f9497e1dd5d943d3b892611e683091512e2ba2fb7c4159dd8"
+    },
+    "blog-audio": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-audio/SKILL.md",
+      "computedHash": "3538ad097ae1368e44ccb001e27e071ce94e3dcdf433a5ffce05b364b63d9181"
+    },
+    "blog-audit": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-audit/SKILL.md",
+      "computedHash": "419f84ee0726e2fdcb9af35c26284a529b664c9ea2d40900726600398e012919"
+    },
+    "blog-brand": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-brand/SKILL.md",
+      "computedHash": "7ecfa1df5e0bebe36d92323f203887f4409947b24714c2bf66f3be86dc65e70b"
+    },
+    "blog-brief": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-brief/SKILL.md",
+      "computedHash": "7740b6b8dbd62c0c871191b55b6f0d33ca37ed17bdde49067f31b4982fdb23e9"
+    },
+    "blog-calendar": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-calendar/SKILL.md",
+      "computedHash": "742d9f34a40b117a2b648f7acfab4ffdc83bf2b12f720760360269d2e7c16b82"
+    },
+    "blog-cannibalization": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-cannibalization/SKILL.md",
+      "computedHash": "07961d38cc1c041d0c6c35187801963aa0778521a7124d97d6f0f45b24544b49"
+    },
+    "blog-chart": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-chart/SKILL.md",
+      "computedHash": "8286a73f2394e04299b9ead37541170edd703384c618a96f5c69d578237bf6a7"
+    },
+    "blog-cluster": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-cluster/SKILL.md",
+      "computedHash": "3fa8685bdcc664f0965ad542cf1e4224fd17f06ba1376a9ec3cd18ebe6e73d44"
+    },
+    "blog-decay": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-decay/SKILL.md",
+      "computedHash": "e83e726ea61a63701733de0535fe233790670f2b13642b7f7c36368c136003b2"
+    },
+    "blog-discourse": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-discourse/SKILL.md",
+      "computedHash": "c418a7e1ff111aa232ad6f7b28553aa5032786e2a6384969218d6816c33990a2"
+    },
+    "blog-factcheck": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-factcheck/SKILL.md",
+      "computedHash": "dcf944b921393990566d3de3f38383dbf9fe69b0e1581ff1dd14fc43f2e2c06d"
+    },
+    "blog-flow": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-flow/SKILL.md",
+      "computedHash": "0d841b468fb6ab7eeb169f2fba5bbf2ee535a735f11da96bb1475c301205c1cb"
+    },
+    "blog-geo": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-geo/SKILL.md",
+      "computedHash": "e75994eedb45a13036904923d9a39bfc66273e650c6038594c9c5d613dcccc0a"
+    },
+    "blog-google": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-google/SKILL.md",
+      "computedHash": "203e277c2829ef108fceee805bdd8410dedf2bf865264fc3dac7735bc9bd6807"
+    },
+    "blog-image": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-image/SKILL.md",
+      "computedHash": "dce4e8ce9a2ce4fce79d060303dfef0dca062e1508cdadd0dc98d847afbcc036"
+    },
+    "blog-locale-audit": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-locale-audit/SKILL.md",
+      "computedHash": "6d5075df6ea43bcbc5b90f022d29dfed67f01ff1913fa8c5b2dcecc613916649"
+    },
+    "blog-localize": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-localize/SKILL.md",
+      "computedHash": "015214048b470ed8c5c0fb36a46f90045a07a4330301dc1d09baaf2a58687d42"
+    },
+    "blog-multilingual": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-multilingual/SKILL.md",
+      "computedHash": "0f43a44bc6bab65ec951dec77bce43431261fe398ae621b359a66787213307c4"
+    },
+    "blog-notebooklm": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-notebooklm/SKILL.md",
+      "computedHash": "03888e78b32ada59399263596804e722f861adb6ea3df01e3ef7d3172e88bd18"
+    },
+    "blog-outline": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-outline/SKILL.md",
+      "computedHash": "8720fb7f6864e261ef3618db63939270920cf9c476b9f8869fc97f9f34f2a810"
+    },
+    "blog-persona": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-persona/SKILL.md",
+      "computedHash": "cc1599d7b250e1482891a3999c4eaf77ec8d3cacbb7ba86d8be0b6f68d6c1ada"
+    },
+    "blog-repurpose": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-repurpose/SKILL.md",
+      "computedHash": "be63b362992f07f3e0d2e0383274862b5759f309c26652a3dcf46a78998420a9"
+    },
+    "blog-rewrite": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-rewrite/SKILL.md",
+      "computedHash": "50d80aeeb64ed226bd43dff862886d68c7d058893bb1f66ba3e4b1ecb1c56634"
+    },
+    "blog-schema": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-schema/SKILL.md",
+      "computedHash": "849644455063bb966ea3d26a24c8a8299d96eefb03cc3aa541c3cc863222a295"
+    },
+    "blog-seo-check": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-seo-check/SKILL.md",
+      "computedHash": "a552301d2ed9c3e43bde8d1f88eac3a7e827b54b8b7ef19a6770dbd3c2ccaa0e"
+    },
+    "blog-strategy": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-strategy/SKILL.md",
+      "computedHash": "a1dd6e7af2c35aaa4722a8ef6bc2c24b2fd9ff63692ca2496aa21dc9aa3e4137"
+    },
+    "blog-style": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-style/SKILL.md",
+      "computedHash": "fd17fd22e3cfc91ba666b538d983bdc9d55204aa74c3768e08a20b84a80f7afb"
+    },
+    "blog-taxonomy": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-taxonomy/SKILL.md",
+      "computedHash": "0ef3ae2e720f713f4af1605f46b0a5debe17673ff79a62874cbee669532713d3"
+    },
+    "blog-translate": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-translate/SKILL.md",
+      "computedHash": "90ba7a1452b7c64fc7106d419dfda3d9e0ca490b8072f3316f9e1b12f8b17ebe"
+    },
+    "blog-write": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "skills/blog-write/SKILL.md",
+      "computedHash": "f5268b07b6b6f64f40ffec9785efb94be4c51030f23bc07639b56fe14f9cce2b"
+    },
+    "claude-blog-brain": {
+      "source": "agricidaniel/claude-blog",
+      "sourceType": "github",
+      "skillPath": "brain/SKILL.md",
+      "computedHash": "ae8f918b429dd6b77db56972f9b28ef026de77bffd4b22c7e82c5b91d1f308ad"
+    }
+  }
+}
