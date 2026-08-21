@@ -1,0 +1,30 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  pubDate: Date;
+  tags: string[];
+}
+
+const { title, description, href, pubDate, tags } = Astro.props;
+
+const date = pubDate.toISOString().slice(0, 10);
+---
+
+<article
+  class="card"
+  data-article
+  data-id={href}
+  data-date={date}
+  data-tags={tags.join(" ")}
+>
+  <h3>
+    <a href={href} data-astro-prefetch>{title}</a>
+  </h3>
+  <p class="!text-sm font-light">
+    <time datetime={date}>{date}</time>
+    {tags.length > 0 && <span class="ml-4">{tags.join(", ")}</span>}
+  </p>
+  <p>{description}</p>
+</article>

@@ -1,10 +1,16 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import babyMeImage from "../assets/baby-me.jpg";
 import Project from "../components/Project.astro";
 import ShowOnHover from "../components/ShowOnHover.astro";
 import Layout from "../layouts/Layout.astro";
 import imageIcon from "../assets/icons/image.svg?raw";
+import Article from "../components/Article.astro";
+
+const articles = (await getCollection("articles"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <Layout>
@@ -85,5 +91,27 @@ import imageIcon from "../assets/icons/image.svg?raw";
 				link="https://github.com/bywhitebird/kazam"
 			/>
 		</div>
+	</section>
+
+	<section>
+		<h2>Articles</h2>
+
+		<div class="flex flex-col space-y-4">
+			{
+				articles.map((article) => (
+					<Article
+						title={article.data.title}
+						description={article.data.description}
+						href={`/articles/${article.id}`}
+						pubDate={article.data.pubDate}
+						tags={article.data.tags}
+					/>
+				))
+			}
+		</div>
+
+		<a href="/articles" class="font-light block mt-6" data-astro-prefetch>
+			→ Read All Articles</a
+		>
 	</section>
 </Layout>

@@ -1,0 +1,141 @@
+---
+import { getCollection } from "astro:content";
+import Article from "../../components/Article.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const articles = (await getCollection("articles")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const tags = [...new Set(articles.flatMap((a) => a.data.tags))].sort();
+
+const index = articles.map((a) => ({
+  id: `/articles/${a.id}`,
+  title: a.data.title,
+  description: a.data.description,
+  body: a.body ?? "",
+  tags: a.data.tags,
+}));
+---
+
+<Layout>
+  <a href="/" class="font-light block mb-8" data-astro-prefetch>← Home</a>
+
+  <h1>Articles</h1>
+
+  <div class="flex flex-col gap-4 mt-8">
+    <input
+      id="search"
+      type="search"
+      placeholder="Search"
+      autocomplete="off"
+      class="border py-1 px-2 rounded-md focus:outline-prose-text font-light"
+    />
+
+    <div class="flex flex-wrap gap-x-4 gap-y-2 items-center">
+      <select
+        id="sort"
+        class="border py-1 px-2 rounded-md focus:outline-prose-text font-light"
+      >
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
+
+      {
+        tags.map((tag) => (
+          <label class="font-light">
+            <input type="checkbox" name="tag" value={tag} /> {tag}
+          </label>
+        ))
+      }
+    </div>
+  </div>
+
+  <div id="list" class="flex flex-col space-y-4 mt-8">
+    {
+      articles.map((article) => (
+        <Article
+          title={article.data.title}
+          description={article.data.description}
+          href={`/articles/${article.id}`}
+          pubDate={article.data.pubDate}
+          tags={article.data.tags}
+        />
+      ))
+    }
+  </div>
+
+  <p id="empty" class="hidden font-light">Nothing matches that search.</p>
+
+  <script type="application/json" id="articles-index" set:html={JSON.stringify(index)} />
+
+  <script>
+    import { create, insertMultiple, search } from "@orama/orama";
+
+    const raw = document.getElementById("articles-index")?.textContent ?? "[]";
+    const docs = JSON.parse(raw) as {
+      id: string;
+      title: string;
+      description: string;
+      body: string;
+      tags: string[];
+    }[];
+
+    const db = create({
+      schema: {
+        id: "string",
+        title: "string",
+        description: "string",
+        body: "string",
+      },
+    });
+    await insertMultiple(db, docs);
+
+    const list = document.getElementById("list") as HTMLElement;
+    const empty = document.getElementById("empty") as HTMLElement;
+    const input = document.getElementById("search") as HTMLInputElement;
+    const sort = document.getElementById("sort") as HTMLSelectElement;
+    const cards = [...list.querySelectorAll<HTMLElement>("[data-article]")];
+
+    async function matchingIds(term: string) {
+      if (term.trim() === "") return null;
+      const results = await search(db, { term, properties: "*", limit: 100 });
+      return new Set(results.hits.map((hit) => String(hit.document.id)));
+    }
+
+    async function apply() {
+      const ids = await matchingIds(input.value);
+      const checked = [
+        ...document.querySelectorAll<HTMLInputElement>(
+          'input[name="tag"]:checked',
+        ),
+      ].map((el) => el.value);
+
+      let shown = 0;
+      for (const card of cards) {
+        const tags = (card.dataset.tags ?? "").split(" ").filter(Boolean);
+        const okTags = checked.every((tag) => tags.includes(tag));
+        const okTerm = ids === null || ids.has(card.dataset.id ?? "");
+        const visible = okTags && okTerm;
+        card.hidden = !visible;
+        if (visible) shown++;
+      }
+
+      empty.classList.toggle("hidden", shown > 0);
+
+      const order = sort.value === "oldest" ? 1 : -1;
+      const sorted = [...cards].sort(
+        (a, b) =>
+          order *
+          (Date.parse(b.dataset.date ?? "") - Date.parse(a.dataset.date ?? "")),
+      );
+      for (const card of sorted) list.appendChild(card);
+    }
+
+    input.addEventListener("input", apply);
+    sort.addEventListener("change", apply);
+    for (const box of document.querySelectorAll('input[name="tag"]')) {
+      box.addEventListener("change", apply);
+    }
+  </script>
+</Layout>
