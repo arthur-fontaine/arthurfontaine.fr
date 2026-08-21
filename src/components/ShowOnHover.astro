@@ -13,7 +13,7 @@ const ChildrenComponent = Astro.props["as:children"] || "div";
 
 <Component class={`cursor-alias ${Astro.props.class}`} id="show-on-hover">
   <ChildrenComponent
-    class={`underline decoration-dotted ${Astro.props["class:child"]}`}
+    class={`dotted-underline ${Astro.props["class:child"]}`}
   >
     <!-- slot should be on the same line ChildrenComponent to avoid extra space -->
     <slot /></ChildrenComponent

@@ -4,6 +4,7 @@ import babyMeImage from "../assets/baby-me.jpg";
 import Project from "../components/Project.astro";
 import ShowOnHover from "../components/ShowOnHover.astro";
 import Layout from "../layouts/Layout.astro";
+import imageIcon from "../assets/icons/image.svg?raw";
 ---
 
 <Layout>
@@ -39,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
 				as:children="span"
 			>
 				<!-- This text should be on the same line than the overlay to avoid extra space -->
-				I was barely 1 year old.<span slot="overlay"
+				I was barely 1 year old<span class="inline-block box-content w-[0.78em] pl-[0.3em] align-baseline"><span class="inline-block w-[0.78em] h-[0.78em] align-[0.18em] [&>svg]:w-full [&>svg]:h-full" aria-hidden="true" set:html={imageIcon} /></span>.<span slot="overlay"
 					><Image
 						src={babyMeImage}
 						alt="Me at 1 year old"
@@ -47,7 +48,7 @@ import Layout from "../layouts/Layout.astro";
 					/>
 					<!-- This span should be on the same line than the overlay to avoid extra space -->
 				</span></ShowOnHover
-			><span class="supports-hover:hidden">I was barely 1 year old.</span>
+				><span class="supports-hover:hidden">I was barely 1 year old.</span>
 			That fascination with technology, and the urge to invent things, led me
 			straight to software, where I get to mix creativity and logic.
 		</p>

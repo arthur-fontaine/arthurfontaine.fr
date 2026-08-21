@@ -63,6 +63,15 @@
     }
   }
 
+  .dotted-underline {
+    text-decoration: none;
+    background-image: repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px 3px);
+    background-repeat: repeat-x;
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    padding-bottom: .14em;
+  }
+
   .project {
     &:is(article) {
       padding: theme(spacing.4);
