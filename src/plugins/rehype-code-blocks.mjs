@@ -10,6 +10,10 @@ function element(tagName, properties, children = []) {
 	return { type: "element", tagName, properties, children };
 }
 
+function wrapTable(table) {
+	return element("div", { className: ["table-scroll"] }, [table]);
+}
+
 function wrap(pre) {
 	const lines = textOf(pre).replace(/\n$/, "").split("\n").length;
 	const long = lines >= CLAMP_FROM_LINES;
@@ -68,6 +72,10 @@ export function rehypeCodeBlocks() {
 					)
 				) {
 					return wrap(child);
+				}
+
+				if (child.tagName === "table") {
+					return wrapTable(child);
 				}
 
 				visit(child);

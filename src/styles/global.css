@@ -199,7 +199,7 @@
     &:is(article) {
       padding: theme(spacing.4);
       border-radius: theme(radius.xl);
-      border: 1px solid var(--tw-prose-body, color-mix(in srgb, theme(colors.proseText), transparent 50%));
+      border: 1px solid var(--tw-prose-body, color-mix(in srgb, var(--color-prose-text), transparent 50%));
       display: flex;
       flex-direction: column;
       gap: theme(spacing.1);
@@ -221,10 +221,10 @@
     min-width: 0;
   }
 
-  /* A table wide enough to overflow scrolls inside its own box instead of
-     stretching the page. display: block is what lets it shrink. */
-  table {
-    display: block;
+  /* rehype-code-blocks wraps every table in this. The table keeps its normal
+     layout; a wide one scrolls here instead of stretching the page. */
+  .table-scroll {
+    min-width: 0;
     max-width: 100%;
     overflow-x: auto;
   }
